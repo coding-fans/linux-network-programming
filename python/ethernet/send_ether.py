@@ -88,7 +88,7 @@ def send_ether(iface, to, _type, data):
     if isinstance(to, str):
         to = mac_aton(to)
     if isinstance(data, str):
-        data = data.encode('utf10')
+        data = data.encode('utf8')
 
     # 创建套接字并绑定发送网卡
     s = socket(AF_PACKET, SOCK_RAW)
