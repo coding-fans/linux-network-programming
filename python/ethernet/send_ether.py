@@ -34,9 +34,13 @@ from socket import (
 
 def mac_ntoa(n):
     '''
-        将MAC地址转化成可读形式
+        Convert binary MAC address to readable format.
 
-        n:      MAC地址二进制形式(也是网络传输的形式)
+        Arguments
+            n: binary format, must be bytes type of size 6.
+
+        Returns
+            A str type which is the readable format, like '08:00:27:c8:04:83'.
     '''
 
     return ':'.join([
@@ -47,9 +51,13 @@ def mac_ntoa(n):
 
 def mac_aton(a):
     '''
-        将MAC地址由可读形式转成二进制
+        Convert readable MAC address to binary format.
 
-        a:      MAC地址可读形式(冒号分隔十六进制)
+        Arguments
+            a: readable format, str type of Colon-Separated Hexadecimal.
+
+        Returns
+            A bytes type of size 6, which is the binary format.
     '''
 
     return b''.join([
@@ -60,85 +68,97 @@ def mac_aton(a):
 
 def get_mac_address(iface):
     '''
-        获取网卡MAC地址
+        Fetch MAC address of given iface.
 
-        iface:      网卡名
+        Arguments
+            iface: iface name, str type.
+
+        Returns
+            A bytes type of size 6, which is the MAC address in binary format.
     '''
 
-    # 创建套接字
+    # create a socket, any type is ok
     s = socket(AF_INET, SOCK_DGRAM)
-    # 封装网卡名
+
+    # pack iface name to struct ifreq
     iface_buf = struct.pack('64s', iface.encode('utf8'))
-    # 调用ioctl系统调用获得MAC地址
-    # 从C头文件获悉SIOCGIFHWADDR宏的值为：0x8927
+
+    # call ioctl to get hardware address
+    # according to C header file, SIOCGIFHWADDR is 0x8927
     mac = ioctl(s.fileno(), 0x8927, iface_buf)[18:24]
+
     return mac
 
 
 def send_ether(iface, to, _type, data):
     '''
-        发送以太网数据
+        Send data through ethernet protocol, using raw socket.
 
-        iface:      发送网卡
-        to:         目的MAC地址
-        _type:      协议类型
-        data:    数据
+        Arguments
+            iface: name of iface for sending, str type.
+
+            to: destination MAC addres, str type for readable or
+                bytes type for binary.
+
+            _type: protocol type, int type.
+
+            data: data to send, str type or bytes type.
     '''
 
+    # if destination address is readable format, convert first
     if isinstance(to, str):
         to = mac_aton(to)
+
+    # if data is str type, encode it first
     if isinstance(data, str):
         data = data.encode('utf8')
 
-    # 创建套接字并绑定发送网卡
+    # create a raw socket
     s = socket(AF_PACKET, SOCK_RAW)
+    # bind to the sending iface
     s.bind((iface, 0))
 
-    # 根据发送网卡取得源MAC地址
+    # get MAC address of sending iface, which is the source address
     fr = get_mac_address(iface)
 
-    # 封装以太网包头
-    header = struct.pack('!6s6sH', fr, to, _type)
-    packet = header + data
+    # pack ethernet header
+    header = struct.pack('!6s6sH', to, fr, _type)
+    # pack ethernet frame
+    frame = header + data
 
-    # 发送数据包
-    s.send(packet)
+    # send the ethernet frame
+    s.send(frame)
 
 def main():
     '''
-        发送以太网数据
-
-        iface:      发送网卡
-        to:         目的MAC地址
-        _type:      协议类型
-        data:    数据
+        Entrance for the program.
     '''
 
-    # 命令行参数解析器
-    parser = ArgumentParser(description='Send ethernet packet.')
+    # parser for command line arguments
+    parser = ArgumentParser(description='Send ethernet frame.')
 
-    # 参数：发送网卡
+    # Argument: name of iface for sending
     parser.add_argument(
         '-i',
         '--iface',
         dest='iface',
         required=True,
     )
-    # 参数：目的MAC
+    # Argument: destination MAC address
     parser.add_argument(
         '-t',
         '--to',
         dest='to',
         required=True,
     )
-    # 参数：发送数据
+    # Argument: data to send
     parser.add_argument(
         '-d',
         '--data',
         dest='data',
         required=True,
     )
-    # 参数：协议类型
+    # Argument: protocol type
     parser.add_argument(
         '-T',
         '--type',
@@ -147,17 +167,16 @@ def main():
         required=False,
     )
 
-    # 解析参数
+    # parse arguments
     args = parser.parse_args()
 
-    # 根据参数发送以太网数据包
+    # send ethernet frame according to given arguments
     send_ether(
         iface=args.iface,
         to=args.to,
         _type=eval(args._type),
         data=args.data,
     )
-
 
 if __name__ == '__main__':
     main()

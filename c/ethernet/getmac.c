@@ -18,51 +18,54 @@
 
 
 /**
- * 将二进制MAC地址转成成可读形式
+ *  Convert binary MAC address to readable format.
  *
- * @n - 二进制形式，长度必须为6个字节
- * @a - 可读形式存储缓冲器，长度必须至少为18个字节(包含末尾'\0')
+ *  Arguments
+ *      n: binary format, must be 6 bytes.
+ *
+ *      a: buffer for readable format, 18 bytes at least(`\0` included).
  **/
 void mac_ntoa(unsigned char *n, char *a) {
-    // 遍历二进制形式6个字节
+    // traverse 6 bytes one by one
     for (int i=0; i<6; i++) {
-        // 格式化串
+        // format string
         char *format = ":%02x";
-        // 首个字节不需要':'开头
+
+        // first byte without leading `:`
         if(0 == i) {
             format = "%02x";
         }
 
-        // 输出当前字节
+        // format current byte
         a += sprintf(a, format, n[i]);
     }
 }
 
 
 int main(int argc, char *argv[]) {
-    // 创建套接字
+    // create a socket, any type is ok
     int s = socket(AF_INET, SOCK_STREAM, 0);
     if (-1 == s) {
         perror("Fail to create socket");
         return 1;
     }
 
-    // 结构体填充网卡名
+    // fill iface name to struct ifreq
     struct ifreq ifr;
     strncpy(ifr.ifr_name, argv[1], 15);
 
-    // ioctl系统调用获取硬件地址
+    // call ioctl to get hardware address
     int ret = ioctl(s, SIOCGIFHWADDR, &ifr);
     if (-1 == ret) {
         perror("Fail to get mac address");
         return 2;
     }
 
-    // 转换成二进制形式
+    // convert to readable format
     char mac[18];
     mac_ntoa((unsigned char *)ifr.ifr_hwaddr.sa_data, mac);
 
-    // 打印结果
+    // output result
     printf("IFace: %s\n", ifr.ifr_name);
     printf("MAC: %s\n", mac);
 
