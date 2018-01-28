@@ -32,23 +32,6 @@ from socket import (
 )
 
 
-def mac_ntoa(n):
-    '''
-        Convert binary MAC address to readable format.
-
-        Arguments
-            n: binary format, must be bytes type of size 6.
-
-        Returns
-            A str type which is the readable format, like '08:00:27:c8:04:83'.
-    '''
-
-    return ':'.join([
-        base64.b16encode(bytes([b])).decode('utf8')
-        for b in n
-    ]).lower()
-
-
 def mac_aton(a):
     '''
         Convert readable MAC address to binary format.
