@@ -1,5 +1,5 @@
 /**
- * FileName:   getmac.c
+ * FileName:   show_mac.c
  * Author:     Chen Yanfei
  * @contact:   fasionchan@gmail.com
  * @version:   $Id$
