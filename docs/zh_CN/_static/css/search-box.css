@@ -1,0 +1,12 @@
+#searchbox {
+    margin-bottom: 12px;
+}
+
+#searchbox .search div {
+    display: inline-block;
+}
+
+div.sphinxsidebar #searchbox input[type="text"] {
+        width: 120px;
+
+}

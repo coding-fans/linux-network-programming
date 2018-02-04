@@ -92,6 +92,7 @@ html_theme = 'alabaster'
 # documentation.
 html_theme_options = {
     'logo': 'logo.png',
+    #'logo_name': True,
     'description': u'Linux网络编程入门教程，面向初学者，例子丰富，讲解详细。',
 
     'font_family': ','.join(map(repr, [
@@ -100,10 +101,20 @@ html_theme_options = {
         'Microsoft YaHei',
     ])),
 
+    #'fixed_sidebar': True,
+
+    # GitHub
     'github_user': 'fasionchan',
     'github_repo': 'linux-network-programming',
+    'github_banner': True,
 
-    'show_related': True,
+    # GratiPay
+    #'gratipay_user': 'fasionchan@gmail.com',
+
+    # Google Analytics
+    #'analytics_id': 'UA-113160431-1',
+
+    #'show_related': True,
 }
 
 # Add any paths that contain custom static files (such as style sheets) here,
@@ -119,10 +130,14 @@ html_static_path = ['_static']
 html_sidebars = {
     '**': [
         'about.html',
-        'navigation.html',
-        'relations.html',  # needs 'show_related': True theme option to display
         'searchbox.html',
-        'donate.html',
+        'navigation.html',
+        'wechat-mp-qrcode.html',
+        #'donate.html',
+
+        #'reward.html',
+
+        #'relations.html',  # needs 'show_related': True theme option to display
     ]
 }
 
@@ -205,4 +220,5 @@ texinfo_documents = [
 # A list of files that should not be packed into the epub file.
 ##epub_exclude_files = ['search.html']
 
-
+def setup(app):
+    app.add_stylesheet('css/search-box.css')

@@ -1,4 +1,4 @@
-.. 网络协议
+.. 编程实践
     FileName:   index.rst
     Author:     Fasion Chan
     Created:    2018-01-28 11:45:04
@@ -9,15 +9,15 @@
 
     Changelog:
 
-网络协议
+编程实践
 ========
 
 .. toctree::
    :maxdepth: 2
 
-    物理层 <physical-layer>
-    数据链路层 <data-link-layer>
-    以太网协议 <ethernet>
+    以太网编程实践(C语言) <ethernet-programming-c>
+
+    以太网编程实践(Python语言) <ethernet-programming-py>
 
 .. comments
     comment something out below
