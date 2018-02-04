@@ -225,3 +225,4 @@ texinfo_documents = [
 
 def setup(app):
     app.add_stylesheet('css/search-box.css')
+    app.add_stylesheet('css/hide-ad.css')
