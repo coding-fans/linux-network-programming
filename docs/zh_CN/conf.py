@@ -175,6 +175,7 @@ latex_documents = [
     (master_doc, 'Linux.tex', u'Linux网络编程 Documentation',
      u'陈彦霏', 'manual'),
 ]
+latex_documents = []
 
 
 # -- Options for manual page output ---------------------------------------
@@ -185,6 +186,7 @@ man_pages = [
     (master_doc, 'linux', u'Linux网络编程 Documentation',
      [author], 1)
 ]
+#man_pages = []
 
 
 # -- Options for Texinfo output -------------------------------------------
@@ -197,6 +199,7 @@ texinfo_documents = [
      author, 'Linux', 'One line description of project.',
      'Miscellaneous'),
 ]
+#texinfo_documents = []
 
 
 
