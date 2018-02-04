@@ -33,10 +33,6 @@
 #define MAC_BYTES 6
 
 
-#define IS_HEX(c) ((c) >= '0' && (c) <= '9' || (c) >= 'a' && (c) <= 'f' || (c) >= 'A' && (c) <= 'F')
-#define HEX(c) (((c) >= 'a') ? ((c) - 'a' + 10) : (((c) >= 'A') ? ((c) - 'A' + 10) : ((c) - '0')))
-
-
 /**
  *  Convert readable MAC address to binary format.
  *
@@ -46,33 +42,13 @@
  *      n: buffer for binary format, 6 bytes at least.
  *
  *  Returns
- *      0 if success, -1 or -2 if error.
+ *      0 if success, -1 if error.
  **/
 int mac_aton(const char *a, unsigned char *n) {
-    for (int i=0; i<6; i++) {
-        // skip the leading ':'
-        if (i > 0) {
-            // unexpected char, expect ':'
-            if (':' != *a) {
-                return -1;
-            }
+    int matches = sscanf(a, "%hhx:%hhx:%hhx:%hhx:%hhx:%hhx", n, n+1, n+2,
+                         n+3, n+4, n+5);
 
-            a++;
-        }
-
-        // unexpected char, expect 0-9 a-f A-f
-        if (!IS_HEX(a[0]) || !IS_HEX(a[1])) {
-            return -2;
-        }
-
-        *n = ((HEX(a[0]) << 4) | HEX(a[1]));
-
-        // move to next place
-        a += 2;
-        n++;
-    }
-
-    return 0;
+    return (6 == matches ? 0 : -1);
 }
 
 
@@ -86,17 +62,15 @@ int mac_aton(const char *a, unsigned char *n) {
  *
  *      s: socket for ioctl, optional.
  *
- *      create_socket: should be true if s is given, else false.
- *
  *  Returns
  *      0 if success, -1 if error.
  **/
-int fetch_iface_mac(char const *iface, unsigned char *mac, int s,
-        bool create_socket) {
+int fetch_iface_mac(char const *iface, unsigned char *mac, int s) {
     // value to return, 0 for success, -1 for error
     int value_to_return = -1;
 
     // create socket if needed(s is not given)
+    bool create_socket = (s < 0);
     if (create_socket) {
         s = socket(AF_INET, SOCK_DGRAM, 0);
         if (-1 == s) {
@@ -138,16 +112,15 @@ cleanup:
  *
  *      s: socket for ioctl, optional.
  *
- *      create_socket: should be true if s is given, else false.
- *
  *  Returns
  *      Iface index(which is greater than 0) if success, -1 if error.
  **/
-int fetch_iface_index(char const *iface, int s, bool create_socket) {
+int fetch_iface_index(char const *iface, int s) {
     // iface index to return, -1 means error
     int if_index = -1;
 
     // create socket if needed(s is not given)
+    bool create_socket = (s < 0);
     if (create_socket) {
         s = socket(AF_INET, SOCK_DGRAM, 0);
         if (-1 == s) {
@@ -190,7 +163,7 @@ cleanup:
  **/
 int bind_iface(int s, char const *iface) {
     // fetch iface index
-    int if_index = fetch_iface_index(iface, s, false);
+    int if_index = fetch_iface_index(iface, s);
     if (-1 == if_index) {
         return -1;
     }
@@ -213,6 +186,24 @@ int bind_iface(int s, char const *iface) {
 
 
 /**
+ * struct for an ethernet frame
+ **/
+struct ethernet_frame {
+    // destination MAC address, 6 bytes
+    unsigned char dst_addr[6];
+
+    // source MAC address, 6 bytes
+    unsigned char src_addr[6];
+
+    // type, in network byte order
+    unsigned short type;
+
+    // data
+    unsigned char data[MAX_ETHERNET_DATA_SIZE];
+};
+
+
+/**
  *  Send data through given iface by ethernet protocol, using raw socket.
  *
  *  Arguments
@@ -226,17 +217,16 @@ int bind_iface(int s, char const *iface) {
  *
  *      s: socket for ioctl, optional.
  *
- *      create_socket: should be true if s is given, else false.
- *
  *  Returns
  *      0 if success, -1 if error.
  **/
 int send_ether(char const *iface, unsigned char const *to, short type,
-        char const *data, int s, bool create_socket) {
+        char const *data, int s) {
     // value to return, 0 for success, -1 for error
     int value_to_return = -1;
 
     // create socket if needed(s is not given)
+    bool create_socket = (s < 0);
     if (create_socket) {
         s = socket(PF_PACKET, SOCK_RAW | SOCK_CLOEXEC, 0);
         if (-1 == s) {
@@ -252,22 +242,22 @@ int send_ether(char const *iface, unsigned char const *to, short type,
 
     // fetch MAC address of given iface, which is the source address
     unsigned char fr[6];
-    ret = fetch_iface_mac(iface, fr, s, false);
+    ret = fetch_iface_mac(iface, fr, s);
     if (-1 == ret) {
         goto cleanup;
     }
 
     // construct ethernet frame, which can be 1514 bytes at most
-    unsigned char frame[1514];
+    struct ethernet_frame frame;
 
     // fill destination MAC address
-    memcpy(frame + ETHERNET_DST_ADDR_OFFSET, to, MAC_BYTES);
+    memcpy(frame.dst_addr, to, MAC_BYTES);
 
     // fill source MAC address
-    memcpy(frame + ETHERNET_SRC_ADDR_OFFSET, fr, MAC_BYTES);
+    memcpy(frame.src_addr, fr, MAC_BYTES);
 
     // fill type
-    *((short *)(frame + ETHERNET_TYPE_OFFSET)) = htons(type);
+    frame.type = htons(type);
 
     // truncate if data is to long
     int data_size = strlen(data);
@@ -276,11 +266,11 @@ int send_ether(char const *iface, unsigned char const *to, short type,
     }
 
     // fill data
-    memcpy(frame + ETHERNET_DATA_OFFSET, data, data_size);
+    memcpy(frame.data, data, data_size);
 
     int frame_size = ETHERNET_HEADER_SIZE + data_size;
 
-    ret = sendto(s, frame, frame_size, 0, NULL, 0);
+    ret = sendto(s, &frame, frame_size, 0, NULL, 0);
     if (-1 == ret) {
         goto cleanup;
     }
@@ -308,6 +298,9 @@ struct arguments {
     // destination MAC address
     char const *to;
 
+    // data type
+    unsigned short type;
+
     // data to send
     char const *data;
 };
@@ -326,6 +319,12 @@ static error_t opt_handler(int key, char *arg, struct argp_state *state) {
 
         case 'i':
             arguments->iface = arg;
+            break;
+
+        case 'T':
+            if (sscanf(arg, "%hx", &arguments->type) != 1) {
+                return ARGP_ERR_UNKNOWN;
+            }
             break;
 
         case 't':
@@ -353,19 +352,22 @@ static error_t opt_handler(int key, char *arg, struct argp_state *state) {
  **/
 static struct arguments const *parse_arguments(int argc, char *argv[]) {
     // docs for program and options
-    static char const doc[] = "send_ether";
-    static char const args_doc[] = "[FILENAME]";
+    static char const doc[] = "send_ether: send data through ethernet frame";
+    static char const args_doc[] = "";
 
     // command line options
     static struct argp_option const options[] = {
         // Option -i --iface: name of iface through which data is sent
-        {"iface", 'i', "IFACE", 0, ""},
+        {"iface", 'i', "IFACE", 0, "name of iface for sending"},
 
         // Option -t --to: destination MAC address
-        {"to", 't', "TO", 0, ""},
+        {"to", 't', "TO", 0, "destination mac address"},
+
+        // Option -T --type: data type
+        {"type", 'T', "TYPE", 0, "data type"},
 
         // Option -d --data: data to send, optional since default value is set
-        {"data", 'd', "DATA", 0, ""},
+        {"data", 'd', "DATA", 0, "data to send"},
 
         { 0 }
     };
@@ -384,6 +386,8 @@ static struct arguments const *parse_arguments(int argc, char *argv[]) {
     static struct arguments arguments = {
         .iface = NULL,
         .to = NULL,
+        //default data type: 0x0900
+        .type = 0x0900,
         // default data, 46 bytes string of 'a'
         // since for ethernet frame data is 46 bytes at least
         .data = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
@@ -412,7 +416,8 @@ int main(int argc, char *argv[]) {
     }
 
     // send data
-    ret = send_ether(arguments->iface, to, 0x0900, arguments->data, -1, true);
+    ret = send_ether(arguments->iface, to, arguments->type,
+                     arguments->data, -1);
     if (-1 == ret) {
         perror("Fail to send ethernet frame: ");
         return 3;

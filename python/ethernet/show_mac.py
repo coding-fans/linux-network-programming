@@ -38,13 +38,10 @@ def mac_ntoa(n):
             A str type which is the readable format, like '08:00:27:c8:04:83'.
     '''
 
-    return ':'.join([
-        base64.b16encode(bytes([b])).decode('utf8')
-        for b in n
-    ]).lower()
+    return '%02x:%02x:%02x:%02x:%02x:%02x' % tuple(n)
 
 
-def fetch_mac_address(iface):
+def fetch_iface_mac(iface, s=None):
     '''
         Fetch MAC address of given iface.
 
@@ -55,8 +52,9 @@ def fetch_mac_address(iface):
             A bytes type of size 6, which is the MAC address in binary format.
     '''
 
-    # create a socket, any type is ok
-    s = socket(AF_INET, SOCK_DGRAM)
+    # create socket if not given, any type is ok
+    if not s:
+        s = socket(AF_INET, SOCK_DGRAM)
 
     # pack iface name to struct ifreq
     iface_buf = struct.pack('64s', iface.encode('utf8'))
@@ -73,7 +71,7 @@ def main():
     iface = sys.argv[1]
 
     # Fetch mac address
-    mac = fetch_mac_address(iface)
+    mac = fetch_iface_mac(iface)
 
     # output result
     print('iFace: {iface}'.format(iface=iface))

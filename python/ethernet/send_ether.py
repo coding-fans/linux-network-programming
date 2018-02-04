@@ -43,13 +43,10 @@ def mac_aton(a):
             A bytes type of size 6, which is the binary format.
     '''
 
-    return b''.join([
-        base64.b16decode(b.encode('utf8'))
-        for b in a.upper().split(':')
-    ])
+    return base64.b16decode(a.upper().replace(':', ''))
 
 
-def get_mac_address(iface):
+def fetch_iface_mac(iface, s=None):
     '''
         Fetch MAC address of given iface.
 
@@ -60,8 +57,9 @@ def get_mac_address(iface):
             A bytes type of size 6, which is the MAC address in binary format.
     '''
 
-    # create a socket, any type is ok
-    s = socket(AF_INET, SOCK_DGRAM)
+    # create socket if given, any type is ok
+    if not s:
+        s = socket(AF_INET, SOCK_DGRAM)
 
     # pack iface name to struct ifreq
     iface_buf = struct.pack('64s', iface.encode('utf8'))
@@ -73,7 +71,7 @@ def get_mac_address(iface):
     return mac
 
 
-def send_ether(iface, to, _type, data):
+def send_ether(iface, to, _type, data, s=None):
     '''
         Send data through ethernet protocol, using raw socket.
 
@@ -96,13 +94,15 @@ def send_ether(iface, to, _type, data):
     if isinstance(data, str):
         data = data.encode('utf8')
 
-    # create a raw socket
-    s = socket(AF_PACKET, SOCK_RAW)
+    # create raw socket if not given
+    if s is None:
+        s = socket(AF_PACKET, SOCK_RAW)
+
     # bind to the sending iface
     s.bind((iface, 0))
 
     # get MAC address of sending iface, which is the source address
-    fr = get_mac_address(iface)
+    fr = fetch_iface_mac(iface, s)
 
     # pack ethernet header
     header = struct.pack('!6s6sH', to, fr, _type)
@@ -112,9 +112,16 @@ def send_ether(iface, to, _type, data):
     # send the ethernet frame
     s.send(frame)
 
-def main():
+
+def parse_arguments():
     '''
-        Entrance for the program.
+        Parse command line arguments.
+
+        Arguments
+
+        Returns
+            An argparse.Namespace is return, in which command options and
+            arguments are stored.
     '''
 
     # parser for command line arguments
@@ -139,7 +146,8 @@ def main():
         '-d',
         '--data',
         dest='data',
-        required=True,
+        default='a' * 46,
+        required=False,
     )
     # Argument: protocol type
     parser.add_argument(
@@ -152,6 +160,17 @@ def main():
 
     # parse arguments
     args = parser.parse_args()
+
+    return args
+
+
+def main():
+    '''
+        Entrance for the program.
+    '''
+
+    # parse command line arguments
+    args = parse_arguments()
 
     # send ethernet frame according to given arguments
     send_ether(
