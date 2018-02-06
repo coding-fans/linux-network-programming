@@ -9,6 +9,10 @@
 
     Changelog:
 
+.. meta::
+   :description lang=zh: 通过两服务器通讯问题引入物理层的讨论，物理层主要承担比特流传输的职责。
+   :keywords: 物理层
+
 ======
 物理层
 ======

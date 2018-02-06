@@ -9,6 +9,10 @@
 
     Changelog:
 
+.. meta::
+   :description lang=zh: 将两服务器通讯问题扩展到多服务器通讯问题，需要解决寻址以及复用/分用问题，这就是数据链路层的主要作用。
+   :keywords: 数据链路层, 寻址, 复用, 分用
+
 .. _data-link-layer:
 
 ==========

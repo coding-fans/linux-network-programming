@@ -9,6 +9,10 @@
 
     Changelog:
 
+.. meta::
+   :description lang=zh: 以太网协议是一个数据链路层基础协议，报文单位是以太网帧，主要承担寻址与复用分用的职责。
+   :keywords: 以太网, ethernet, 网卡, 混杂模式, MAC地址, 以太网帧, 寻址, 复用/分用
+
 .. _ethernet-protocol:
 
 ==========
@@ -65,7 +69,7 @@
 
 现实世界中，计算机通过 **网线** 连接到一起：
 
-.. figure:: /_images/protocols/ethernet/3026a7ee9579986199ce1c6971fb02ae.png
+.. figure:: /_images/protocols/switch/3026a7ee9579986199ce1c6971fb02ae.png
 
     *以太网网络*
 
