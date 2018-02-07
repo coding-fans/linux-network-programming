@@ -16,6 +16,8 @@
 写给初学者的计算机网络书
 =========================================
 
+.. figure:: /_images/index/ec5a057f9cb7124f3fae962035072d92.svg
+
 .. toctree::
    :maxdepth: 3
 
