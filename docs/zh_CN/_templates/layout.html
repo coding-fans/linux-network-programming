@@ -1,4 +1,12 @@
 {% extends "!layout.html" %}
+
+{% block content %}
+    <div style="display: none">
+        <img src="{{ pathto('_static/logo.png', 1) }}" />
+    </div>
+    {{ super() }}
+{% endblock %}
+
 {% block footer %}
     {{ super()  }}
     {% include 'baidu_tongji.html' %}
