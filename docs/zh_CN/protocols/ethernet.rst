@@ -69,7 +69,7 @@
 
 现实世界中，计算机通过 **网线** 连接到一起：
 
-.. figure:: /_images/protocols/switch/3026a7ee9579986199ce1c6971fb02ae.png
+.. figure:: /_images/protocols/ethernet-switching/3026a7ee9579986199ce1c6971fb02ae.png
 
     *以太网网络*
 

@@ -175,7 +175,7 @@ latex_documents = [
     (master_doc, 'Linux.tex', u'Linux网络编程 Documentation',
      u'陈彦霏', 'manual'),
 ]
-latex_documents = []
+#latex_documents = []
 
 
 # -- Options for manual page output ---------------------------------------
