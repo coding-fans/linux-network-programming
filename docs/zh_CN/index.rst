@@ -26,6 +26,7 @@
     编程实践 <practices/index>
     工具箱 <toolkit/index>
     附录 <appendices/index>
+    索引 <indexes>
     鸣谢 <acknowledgements/index>
 
 .. comments

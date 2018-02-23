@@ -107,6 +107,7 @@ html_theme_options = {
     'github_user': 'fasionchan',
     'github_repo': 'linux-network-programming',
     'github_banner': True,
+    'github_type': 'star',
 
     # GratiPay
     #'gratipay_user': 'fasionchan@gmail.com',
@@ -132,6 +133,7 @@ html_sidebars = {
         'about.html',
         'searchbox.html',
         'navigation.html',
+        #'sf-namecard-fasionchan.html',
         'wechat-mp-qrcode.html',
         #'donate.html',
 

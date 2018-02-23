@@ -10,8 +10,11 @@
     Changelog:
 
 .. meta::
-   :description lang=zh: 集线器工作在物理层，中继物理信号；交换机工作在数据链路层，根据目的地址转发以太网帧，并能自动学习MAC地址。
-   :keywords: 交换, switch, 集线器, 交换机, MAC地址自动学习, mac address auto learning
+    :description lang=zh:
+        集线器工作在物理层，中继物理信号，所有端口处于同一冲突域并共享带宽。
+        交换机工作在数据链路层，根据目的地址转发以太网帧，并能自动学习MAC地址。
+        交换机每个端口是独立的冲突域，带宽也是独立的，传输效率比集线器更高。
+    :keywords: 交换, switch, 集线器, 交换机, MAC地址自动学习, mac address auto learning
 
 .. _ethernet-switching:
 
