@@ -1,5 +1,9 @@
 {% extends "!layout.html" %}
 
+{% block document %}
+    {{ super() }}
+{% endblock %}
+
 {% block content %}
     <div style="display: none">
         <img src="{{ pathto('_static/logo.png', 1) }}" />
@@ -11,3 +15,8 @@
     {{ super()  }}
     {% include 'baidu_tongji.html' %}
 {% endblock %}
+
+{#
+    {% include 'livere.html' %}
+    {% include 'busuanzi.html' %}
+#}
