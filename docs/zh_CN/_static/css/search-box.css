@@ -2,11 +2,14 @@
     margin-bottom: 12px;
 }
 
+#searchbox .searchformwrapper {
+    overflow: hidden;
+}
+
 #searchbox .search div {
     display: inline-block;
 }
 
 div.sphinxsidebar #searchbox input[type="text"] {
         width: 120px;
-
 }
