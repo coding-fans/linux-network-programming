@@ -158,3 +158,7 @@ ssh端口转发
         :description lang=zh:
         :keywords:
 
+
+    .. raw:: html
+
+        <img src="https://badge.juejin.im/entry/5abc770b518825558c47819b/likes.svg?style=flat-square">

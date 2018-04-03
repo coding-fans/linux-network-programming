@@ -21,6 +21,8 @@ import datetime
 # import sys
 # sys.path.insert(0, os.path.abspath('.'))
 
+now = datetime.datetime.now()
+
 
 # -- General configuration ------------------------------------------------
 
@@ -47,7 +49,7 @@ master_doc = 'index'
 
 # General information about the project.
 project = u'Linux网络编程'
-copyright = u'%d, 陈彦霏' % (datetime.datetime.now().year,)
+copyright = u'%d, <a href="https://fasionchan.com">fasionchan</a>' % (now.year,)
 author = u'陈彦霏'
 
 # The version info for the project you're documenting, acts as replacement for

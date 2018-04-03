@@ -15,11 +15,12 @@
 ======
 
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 1
 
     ifconfig <ifconfig>
     ip <ip>
     man <man>
+    nc <nc>
     tcpdump <tcpdump>
 
 .. comments
