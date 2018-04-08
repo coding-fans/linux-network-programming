@@ -491,6 +491,8 @@ mac_aton
 
 .. include:: /_fragments/wechat-reward.rst
 
+.. include:: /_fragments/disqus.rst
+
 .. _Argp: https://www.gnu.org/software/libc/manual/html_node/Argp.html
 .. _ASCII: http://man7.org/linux/man-pages/man7/ascii.7.html
 .. _GNU: https://www.gnu.org/

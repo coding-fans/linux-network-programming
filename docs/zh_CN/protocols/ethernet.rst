@@ -300,6 +300,8 @@ MAC地址
 
 .. include:: /_fragments/wechat-reward.rst
 
+.. include:: /_fragments/disqus.rst
+
 .. _ASCII: http://man7.org/linux/man-pages/man7/ascii.7.html
 
 .. comments

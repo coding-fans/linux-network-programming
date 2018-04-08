@@ -295,6 +295,8 @@ mac_aton
 
 .. include:: /_fragments/wechat-reward.rst
 
+.. include:: /_fragments/disqus.rst
+
 .. _ASCII: https://zh.wikipedia.org/wiki/ASCII
 .. _Base16: https://tools.ietf.org/html/rfc4648
 .. _Base64: https://zh.wikipedia.org/wiki/Base64

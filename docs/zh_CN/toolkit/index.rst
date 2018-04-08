@@ -19,6 +19,7 @@
 
     ifconfig <ifconfig>
     ip <ip>
+    iperf <iperf>
     man <man>
     nc <nc>
     tcpdump <tcpdump>
