@@ -19,7 +19,7 @@
 .. figure:: /_images/index/ec5a057f9cb7124f3fae962035072d92.svg
 
 .. toctree::
-   :maxdepth: 3
+   :maxdepth: 2
 
     关于 <about/index>
     网络协议 <protocols/index>
