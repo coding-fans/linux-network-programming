@@ -17,6 +17,8 @@
         也可以使用apt方式进行安装：sudo apt install shadowsocks-libev 。
     :keywords: shadowsocks, ssserver, sslocal, 翻墙, Google, GFW, gfwlist, gfwlist2pac
 
+.. _t-shadowsocks:
+
 ===========
 shadowsocks
 ===========

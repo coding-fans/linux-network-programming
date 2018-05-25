@@ -10,8 +10,7 @@
     Changelog:
 
 .. meta::
-    :description lang=zh:
-    :keywords:
+    :keywords: smtp, smtplib, python, send email, 发送邮件
 
 ================================
 使用SMTP协议发送邮件(Python语言)
