@@ -1,4 +1,4 @@
-.. shadowsocks
+.. Shadowsocks
     FileName:   shadowsocks.rst
     Author:     Fasion Chan
     Created:    2018-02-24 20:29:39
@@ -17,10 +17,8 @@
         也可以使用apt方式进行安装：sudo apt install shadowsocks-libev 。
     :keywords: shadowsocks, ssserver, sslocal, 翻墙, Google, GFW, gfwlist, gfwlist2pac
 
-.. _t-shadowsocks:
-
 ===========
-shadowsocks
+Shadowsocks
 ===========
 
 从前的从前，网络是自由的，访问 `Google <https://www.google.com/>`_ 畅通无阻：

@@ -83,7 +83,7 @@ HAProxy
 下面是以一个实际例子介绍4层负载均衡的配置方式。
 这个故事是笔者为了科学上网，操碎心的故事。
 
-最开始，在美国加州买了一台虚拟机，部署上 `shadowsocks` 服务端，在国内访问。
+最开始，在美国加州买了一台虚拟机，部署上 :doc:`shadowsocks` 服务端，在国内访问。
 加州虽然挺遥远，延迟到部分时间在 200 毫秒不到，还是可以接受的。
 但是，有时网络质量突然变差，丢包率急剧上升，几乎不可用。
 虽然持续时间不会很长，但是在关键时刻确实很烦人。
@@ -96,7 +96,7 @@ HAProxy
 然而，手工切来切去很不爽呀！
 
 这时，我想起在广州还有一台服务器呢！
-我在上面部一个 `HAProxy` 服务，将 `TCP` 连接分发到两台 `shadowsock` 不就好了吗？
+我在上面部一个 `HAProxy` 服务，将 `TCP` 连接分发到两台 :doc:`shadowsocks` 不就好了吗？
 于是，下图横空出世：
 
 .. figure:: /_images/services/haproxy/bb0878dce5b5e85224e64c2f6208d69a.png
@@ -151,7 +151,7 @@ HAProxy
 下一步
 ======
 
-如果你想知道如何实现科学上网，可以看看 :ref:`t-shadowsocks` 。
+如果你想知道如何实现科学上网，可以看看 :doc:`shadowsocks` 。
 
 .. include:: /_fragments/next-step-to-wechat-mp.rst
 

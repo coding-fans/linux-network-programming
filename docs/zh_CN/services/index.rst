@@ -16,9 +16,9 @@
 .. toctree::
    :maxdepth: 2
 
-    haproxy <haproxy>
-    shadowsocks <shadowsocks>
-    ssh端口转发 <ssh-port-forwarding>
+    HAProxy <haproxy>
+    Shadowsocks <shadowsocks>
+    SSH端口转发 <ssh-port-forwarding>
 
 .. comments
     comment something out blow

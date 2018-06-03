@@ -1,4 +1,4 @@
-.. ssh端口转发
+.. SSH端口转发
     FileName:   port-forwarding.rst
     Author:     Fasion Chan
     Created:    2018-03-28 18:42:03
@@ -20,7 +20,7 @@
     :keywords: ssh端口转发, 远程端口转发, 本地端口转发, 端口转发, port-forwarding
 
 ===========
-ssh端口转发
+SSH端口转发
 ===========
 
 `ssh` 命令除了登录服务器，还可以在两台机器之间建立隧道。
