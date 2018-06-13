@@ -42,12 +42,35 @@ ip
     3: enp0s8: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc pfifo_fast state UP mode DEFAULT group default qlen 1000
         link/ether 08:00:27:0e:18:e5 brd ff:ff:ff:ff:ff:ff
 
+启用禁用
+--------
+
+.. code-block:: console
+
+    $ ip link set enp0s8 up
+
+.. code-block:: console
+
+    $ ip link set enp0s8 down
+
 网卡混杂模式
 ------------
+
+正常模式下，网卡将过滤目的 :ref:`mac-address` 不是自己的数据包。
+在某些场景，比如网络嗅探，我们需要抓取并分析其他网络数据包。
+这时，可以为网卡开启  :ref:`promisc-mode` 。
+该模式开启后后，网卡将接受到达接口的所有数据包，不管 :ref:`mac-address` 是啥。
+
+运行以下命令，为网卡 ``enp0s8`` 开启混杂模式：
 
 .. code-block:: console
 
     fasion@ubuntu:~$ sudo ip link set enp0s8 promisc on
+
+操作完毕后，再次查询网卡状态，将看到 ``PROMISC`` 标识：
+
+.. code-block:: shell-session
+
     fasion@ubuntu:~$ ip link show enp0s8
     3: enp0s8: <BROADCAST,MULTICAST,PROMISC,UP,LOWER_UP> mtu 1500 qdisc pfifo_fast state UP mode DEFAULT group default qlen 1000
         link/ether 08:00:27:0e:18:e5 brd ff:ff:ff:ff:ff:ff
@@ -76,6 +99,10 @@ ip
            valid_lft forever preferred_lft forever
         inet6 fe80::a00:27ff:fec8:483/64 scope link
            valid_lft forever preferred_lft forever
+
+.. code-block:: shell-session
+
+    $ ip addr add 192.168.56.2/24 dev enp0s8
 
 下一步
 ======
