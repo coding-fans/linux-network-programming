@@ -53,8 +53,8 @@ def get_request_data():
     return isinstance(data, dict), data
 
 
-@app.route('/kvs/<key>', methods=['POST'])
-def create(key):
+@app.route('/kvs', methods=['POST'])
+def create():
     '''
         增
     '''
@@ -74,6 +74,14 @@ def create(key):
         return jsonify({
             'result': False,
             'message': 'bad request data',
+        })
+
+    # 取出数据键
+    key = data.get('key')
+    if not key:
+        return jsonify({
+            'result': False,
+            'message': 'data key missing',
         })
 
     # 插入资源池并判断状态
@@ -149,7 +157,6 @@ def update(key):
     })
 
 
-
 @app.route('/kvs/<key>')
 def retrieve(key):
     '''
@@ -172,15 +179,15 @@ def retrieve(key):
     })
 
 
-@app.route('/kvs/index')
-def index():
+@app.route('/kvs')
+def search():
     '''
-        索引
+        列
     '''
 
     skip = int(request.args.get('skip', 0))
     limit = int(request.args.get('limit', 10))
-    data = list(KVS.keys())[skip:skip+limit]
+    data = list(KVS.values())[skip:skip+limit]
 
     return jsonify({
         'result': True,
