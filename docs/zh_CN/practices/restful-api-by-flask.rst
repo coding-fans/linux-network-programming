@@ -10,8 +10,7 @@
     Changelog:
 
 .. meta::
-    :description lang=zh:
-    :keywords:
+    :keywords: restful, flask, python
 
 ===========================
 用 Flask 框架写 RESTful API
