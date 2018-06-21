@@ -17,6 +17,7 @@
 .. toctree::
    :maxdepth: 1
 
+    curl <curl>
     ifconfig <ifconfig>
     ip <ip>
     iperf <iperf>
