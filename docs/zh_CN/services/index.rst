@@ -19,6 +19,7 @@
     HAProxy <haproxy>
     Shadowsocks <shadowsocks>
     SSH端口转发 <ssh-port-forwarding>
+    Tomcat <tomcat>
 
 .. comments
     comment something out blow
