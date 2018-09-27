@@ -17,6 +17,7 @@
    :maxdepth: 2
 
     HAProxy <haproxy>
+    Nginx <nginx>
     Shadowsocks <shadowsocks>
     SSH端口转发 <ssh-port-forwarding>
     Tomcat <tomcat>

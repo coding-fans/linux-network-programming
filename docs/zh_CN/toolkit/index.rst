@@ -23,6 +23,7 @@
     iperf <iperf>
     man <man>
     nc <nc>
+    rinetd <rinetd>
     tcpdump <tcpdump>
 
 .. comments
