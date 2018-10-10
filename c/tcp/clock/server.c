@@ -16,11 +16,13 @@
 #include <stdlib.h>
 #include <string.h>
 #include <sys/socket.h>
+#include <sys/time.h>
+#include <time.h>
 #include <unistd.h>
 
 #define DEFAULT_LISTEN_ADDR "0.0.0.0"
 #define DEFAULT_LISTEN_PORT "55555"
-#define BUFFER_SIZE 256
+#define BUFFER_SIZE 20
 
 /**
  * struct for storing command line arguments.
@@ -67,7 +69,7 @@ static error_t opt_handler(int key, char *arg, struct argp_state *state) {
 static struct arguments const *parse_arguments(int argc, char *argv[])
 {
     // docs for program and options
-    static char const doc[] = "server: udp echo server";
+    static char const doc[] = "server: tcp clock server";
     static char const args_doc[] = "";
 
     // command line options
@@ -118,8 +120,8 @@ int main(int argc, char *argv[])
     inet_aton(arguments->bind_addr, &bind_addr.sin_addr);
     bind_addr.sin_port = htons(atoi(arguments->bind_port));
 
-    // create udp socket
-    int s = socket(AF_INET, SOCK_DGRAM, 0);
+    // create tcp socket
+    int s = socket(AF_INET, SOCK_STREAM, 0);
     if (s == -1) {
         perror("fail to create socket");
         return 1;
@@ -132,29 +134,48 @@ int main(int argc, char *argv[])
         return 1;
     }
 
-    // loop for incoming message
-    for (;;) {
-        // buffer for storing data recieve
-        char buffer[BUFFER_SIZE];
+    // listen for new connections
+    rv = listen(s, 10);
+    if (rv == -1) {
+        perror("fail to b");
+        return 1;
+    }
 
+    // loop for incoming connection
+    for (;;) {
         // peer address(client address)
         struct sockaddr_in peer_addr;
         int peer_addr_len = sizeof(peer_addr);
 
-        // wait util recieve some data
-        int bytes = recvfrom(s, buffer, BUFFER_SIZE, 0, (struct sockaddr *)&peer_addr, &peer_addr_len);
-        if (bytes < 0) {
-            perror("fail to recieve data");
+        // wait util new connection incomes
+        int c = accept(s, (struct sockaddr *)&peer_addr, &peer_addr_len);
+        if (c < 0) {
+            perror("fail to accept new connection");
             break;
         }
 
-        // print activity info
-        printf("Recieve %3d bytes from %15s:%d\n", bytes, inet_ntoa(peer_addr.sin_addr), ntohs(peer_addr.sin_port));
+        // get current time
+        struct timeval tv;
+        gettimeofday(&tv, NULL);
 
-        // send data back, say echo
-        bytes = sendto(s, buffer, bytes, 0, (struct sockaddr *)&peer_addr, peer_addr_len);
+        // convert to datetime
+        struct tm *tm = localtime(&tv.tv_sec);
+
+        // format datetime
+        char buffer[BUFFER_SIZE];
+        strftime(buffer, BUFFER_SIZE, "%Y-%m-%d %H:%M:%S", tm);
+
+        // send formatted datetime to client
+        int bytes = send(c, buffer, BUFFER_SIZE, 0);
         if (bytes < 0) {
-            perror("fail to send data back");
+            perror("fail to send data to client");
+            break;
+        }
+
+        // close client socket
+        rv = close(c);
+        if (rv == -1) {
+            perror("fail to close client socket");
             break;
         }
     }

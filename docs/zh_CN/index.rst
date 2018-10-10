@@ -19,12 +19,13 @@
 .. figure:: /_images/index/ec5a057f9cb7124f3fae962035072d92.svg
 
 .. toctree::
-   :maxdepth: 2
+    :titlesonly:
 
     关于 <about/index>
     网络协议 <protocols/index>
     编程实践 <practices/index>
     网络服务 <services/index>
+    分布式计算 <distributed/index>
     工具箱 <toolkit/index>
     附录 <appendices/index>
     索引 <indexes>

@@ -128,8 +128,8 @@ HAProxy
         mode tcp
         maxconn 1024
         balance roundrobin
-        server hk xxx.xxx.xxx.xxx:443
-        server ca xxx.xxx.xxx.xxx:443
+        server hk xxx.xxx.xxx.xxx:443 check
+        server ca xxx.xxx.xxx.xxx:443 check
 
 这里采用 ``tcp`` 模式，也就是 **4层负载均衡** 模式。
 我的配置分为 ``global`` 、 ``defaults`` 以及 ``listen`` 总共 ``3`` 节：
