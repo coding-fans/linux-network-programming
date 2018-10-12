@@ -27,6 +27,7 @@
     网络服务 <services/index>
     分布式计算 <distributed/index>
     工具箱 <toolkit/index>
+    译文 <translations/index>
     附录 <appendices/index>
     索引 <indexes>
     鸣谢 <acknowledgements/index>
