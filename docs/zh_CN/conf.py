@@ -135,6 +135,7 @@ html_sidebars = {
         'about.html',
         'searchbox.html',
         'navigation.html',
+        'more.html',
         #'sf-namecard-fasionchan.html',
         'wechat-mp-qrcode.html',
         'course-ad.html',

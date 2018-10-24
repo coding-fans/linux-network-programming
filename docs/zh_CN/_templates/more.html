@@ -1,0 +1,27 @@
+<h3>更多阅读</h3>
+<ul>
+{% for link in [
+	{
+		"title": "Go语言小册",
+		"url": "https://golang-book.readthedocs.io/zh_CN/latest/",
+	},
+	{
+		"title": "学习Linux",
+		"url": "https://learn-linux.readthedocs.io/zh_CN/latest/",
+	},
+	{
+		"title": "NodeJs小册",
+		"url": "https://nodejs-book.readthedocs.io/zh_CN/latest/",
+	},
+	{
+		"title": "OSX操作指南",
+		"url": "https://osx-guide.readthedocs.io/zh_CN/latest/",
+	},
+	{
+		"title": "Python语言小册",
+		"url": "https://python-book.readthedocs.io/zh_CN/latest/",
+	},
+] %}
+<li class="toctree-l1"><a class="reference internal" href="{{ link.url }}">{{ link.title }}</a ></li>
+{% endfor %}
+</ul>
