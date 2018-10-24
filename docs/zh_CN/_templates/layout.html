@@ -1,5 +1,10 @@
 {% extends "!layout.html" %}
 
+{% block extrahead %}
+    {% include 'google_analytics.html' %}
+    {{ super() }}
+{% endblock extrahead %}
+
 {% block document %}
     {{ super() }}
 {% endblock %}
@@ -16,7 +21,6 @@
     {{ super()  }}
 
     {% include 'baidu_tongji.html' %}
-    {% include 'google_analytics.html' %}
     {% include 'disqus.html' %}
 {% endblock %}
 
