@@ -33,7 +33,9 @@ now = datetime.datetime.now()
 # Add any Sphinx extension module names here, as strings. They can be
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
 # ones.
-extensions = []
+extensions = [
+    "sphinx_sitemap",
+]
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['_templates']
@@ -228,6 +230,8 @@ texinfo_documents = [
 
 # A list of files that should not be packed into the epub file.
 ##epub_exclude_files = ['search.html']
+
+site_url = 'https://linux-network-programming.readthedocs.io/zh_CN/latest/'
 
 def setup(app):
     app.add_stylesheet('css/search-box.css')
