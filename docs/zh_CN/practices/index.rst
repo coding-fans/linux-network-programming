@@ -13,7 +13,7 @@
 ========
 
 .. toctree::
-   :maxdepth: 2
+    :titlesonly:
 
     以太网编程实践(C语言) <ethernet-programming-c>
     以太网编程实践(Python语言) <ethernet-programming-py>

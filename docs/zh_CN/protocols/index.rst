@@ -13,12 +13,13 @@
 ========
 
 .. toctree::
-   :maxdepth: 2
+    :titlesonly:
 
     物理层 <physical-layer>
     数据链路层 <data-link-layer>
     以太网协议 <ethernet>
     以太网交换 <ethernet-switching>
+    网络层 <network-layer>
 
 .. comments
     comment something out below

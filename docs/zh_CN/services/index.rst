@@ -14,7 +14,7 @@
 ========
 
 .. toctree::
-   :maxdepth: 2
+    :titlesonly:
 
     HAProxy <haproxy>
     Nginx <nginx>
