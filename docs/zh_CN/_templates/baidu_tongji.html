@@ -1,8 +1,10 @@
+{% set baidu_analytics_id='3d7584e34115fda9fc343709c57a7130' %}
+
 <script>
     var _hmt = _hmt || [];
     (function() {
       var hm = document.createElement("script");
-      hm.src = "https://hm.baidu.com/hm.js?3d7584e34115fda9fc343709c57a7130";
+      hm.src = "https://hm.baidu.com/hm.js?{{ baidu_analytics_id }}";
       var s = document.getElementsByTagName("script")[0];
       s.parentNode.insertBefore(hm, s);
     })();

@@ -237,7 +237,7 @@ KVS 服务实作
 
 .. literalinclude:: /_src/python/restful/flask/kvs/kvs.py
     :caption:
-    :name: python/restful/flask/kvs/kvs/create
+    :name: python/restful/flask/kvs/kvs/get_request_data
     :language: python
     :lines: 34-53
     :linenos:
@@ -267,7 +267,7 @@ KVS 服务实作
 
 .. literalinclude:: /_src/python/restful/flask/kvs/kvs.py
     :caption:
-    :name: python/restful/flask/kvs/kvs/delete
+    :name: python/restful/flask/kvs/kvs/update
     :language: python
     :lines: 125-157
     :linenos:
@@ -281,7 +281,7 @@ KVS 服务实作
 
 .. literalinclude:: /_src/python/restful/flask/kvs/kvs.py
     :caption:
-    :name: python/restful/flask/kvs/kvs/delete
+    :name: python/restful/flask/kvs/kvs/retrieve
     :language: python
     :lines: 160-179
     :linenos:
@@ -293,7 +293,7 @@ KVS 服务实作
 
 .. literalinclude:: /_src/python/restful/flask/kvs/kvs.py
     :caption:
-    :name: python/restful/flask/kvs/kvs/delete
+    :name: python/restful/flask/kvs/kvs/search
     :language: python
     :lines: 182-
     :linenos:

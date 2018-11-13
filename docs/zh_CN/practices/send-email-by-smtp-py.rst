@@ -24,7 +24,7 @@ smtplib
 
 .. literalinclude:: /_src/python/smtp/send_email.py
     :caption:
-    :name: c/send_ether/arguments
+    :name: python/smtp/send_email
     :language: python
     :lines: 21-64
     :linenos:

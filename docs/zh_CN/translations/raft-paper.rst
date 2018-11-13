@@ -11,10 +11,10 @@
 
 .. meta::
     :description lang=zh:
-    Raft是一种用于管理日志复制(replicated log)的共识算法(consensus algorithm)。
-    它提供了一种等价于Paxos的做法，并且同样高效，只是结构有所不同；
-    Raft结构比Paxos更好理解，因而更容易在实际系统中落地。
-    :keywords: raft, raft论文, raft paper,
+        Raft是一种用于管理日志复制(replicated log)的共识算法(consensus algorithm)。
+        它提供了一种等价于Paxos的做法，并且同样高效，只是结构有所不同；
+        Raft结构比Paxos更好理解，因而更容易在实际系统中落地。
+    :keywords: raft, raft论文, raft paper, raft算法
 
 ==============================
 Raft论文：寻找好理解的共识算法

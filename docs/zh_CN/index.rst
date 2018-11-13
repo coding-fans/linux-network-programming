@@ -13,8 +13,14 @@
         You can adapt this file completely to your liking, but it should at least
         contain the root `toctree` directive.
 
-写给初学者的计算机网络书
-=========================================
+.. meta::
+   :description lang=zh:
+        Linux网络编程入门教程，面向初学者，例子丰富，讲解详细。
+   :keywords: Linux, 网络编程, 套接字编程, 网络协议, TCP/IP, 套接字, socket
+
+
+Linux网络编程
+=============
 
 .. figure:: /_images/index/ec5a057f9cb7124f3fae962035072d92.svg
 

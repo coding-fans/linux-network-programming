@@ -11,7 +11,7 @@
 
 {% block content %}
     <div style="display: none">
-        <img src="{{ pathto('_static/logo.png', 1) }}" />
+        <img src="{{ pathto('_static/' ~ theme_logo, 1) }}" />
     </div>
 
     {{ super() }}
@@ -21,6 +21,7 @@
     {{ super()  }}
 
     {% include 'baidu_tongji.html' %}
+    {% include 'baidu_ziyuan.html' %}
     {% include 'disqus.html' %}
 {% endblock %}
 
