@@ -14,9 +14,10 @@
 ====
 
 .. toctree::
-   :maxdepth: 2
+    :titlesonly:
 
     交流 <contact>
+    推荐书单 <recommended-books>
 
 .. comments
     comment something out blow

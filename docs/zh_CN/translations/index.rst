@@ -16,6 +16,7 @@
     :titlesonly:
 
     深入理解Linux TCP backlog <linux-tcp-backlog>
+    Raft算法论文 <raft-paper>
 
 .. comments
     comment something out below

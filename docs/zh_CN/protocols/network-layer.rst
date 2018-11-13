@@ -104,7 +104,7 @@
 进度
 ====
 
-.. figure:: /_images/protocols/network-layer/5f49a11af15701d9d347b83d6556af4d.png
+.. figure:: /_images/protocols/network-layer/43f85526b7f730866cb087574696dd46.png
 
     *新技能Get✔️*
 
