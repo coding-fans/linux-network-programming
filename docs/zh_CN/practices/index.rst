@@ -17,6 +17,7 @@
 
     以太网编程实践(C语言) <ethernet-programming-c>
     以太网编程实践(Python语言) <ethernet-programming-py>
+    ICMP编程实践(Python语言) <ping-by-icmp-py>
     使用SMTP发送邮件(Python语言) <send-email-by-smtp-py>
     用Flask框架写RESTful API<restful-api-by-flask>
 
