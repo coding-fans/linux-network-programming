@@ -83,7 +83,7 @@ ICMP协议编程实践：实现ping命令(Python语言)
     sending_ts = time.time()
     payload = struct.pack('!d', sending_ts)
 
-这段代码将当前时间戳封装起来，其中 *!* 表示 **网络字节序** ， *d* 表示双精度浮点。
+这段代码将当前时间戳封装起来，其中 *!* 表示 **网络** :doc:`endianness` ， *d* 表示双精度浮点。
 
 封装报文头部也是类似的：
 
