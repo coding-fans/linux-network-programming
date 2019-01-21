@@ -87,7 +87,7 @@ KVS 服务
 该服务只提供一种资源，名为 ``kv`` 。
 根据资源名， ``kv`` 资源组的 `URI` 是 ``/kvs`` ， ``kv`` 资源的 `URI` 是 ``/kvs/<key>`` ， ``key`` 是资源的键。
 
-进入源码目录 `python/restful/flask/kvs <https://github.com/fasionchan/linux-network-programming/tree/master/python/restful/flask/kvs>`_ ，
+进入源码目录 `python/restful/flask/kvs <https://github.com/fasionchan/linux-network-programming/tree/master/src/python/restful/flask/kvs>`_ ，
 可以看到两个文件：
 
 .. code-block:: shell-session
@@ -318,9 +318,9 @@ KVS 服务实作
 
 .. include:: /_fragments/disqus.rst
 
-.. _kvs: https://github.com/fasionchan/linux-network-programming/tree/master/python/restful/flask/kvs
-.. _kvs.py: https://github.com/fasionchan/linux-network-programming/blob/master/python/restful/flask/kvs/kvs.py
-.. _requirements.txt: https://github.com/fasionchan/linux-network-programming/blob/master/python/restful/flask/kvs/requirements.txt
+.. _kvs: https://github.com/fasionchan/linux-network-programming/tree/master/src/python/restful/flask/kvs
+.. _kvs.py: https://github.com/fasionchan/linux-network-programming/blob/master/src/python/restful/flask/kvs/kvs.py
+.. _requirements.txt: https://github.com/fasionchan/linux-network-programming/blob/master/src/python/restful/flask/kvs/requirements.txt
 
 .. comments
     comment something out below

@@ -431,7 +431,7 @@ mac_aton
 #. 调用 ``sendto`` 系统调用发送数据帧( ``68`` 行)；
 
 整个程序代码有点长，就不在这里贴了，请在 ``GitHub`` 上查看：
-`c/ethernet/others/send_ether.v1.c <https://github.com/fasionchan/linux-network-programming/blob/master/c/ethernet/others/send_ether.v1.c>`_ 。
+`c/ethernet/others/send_ether.v1.c <https://github.com/fasionchan/linux-network-programming/blob/master/src/c/ethernet/others/send_ether.v1.c>`_ 。
 
 数据帧封装
 ----------
@@ -456,7 +456,7 @@ mac_aton
     :linenos:
 
 同样，全量代码可以在 ``GitHub`` 上查看：
-`c/ethernet/send_ether.c <https://github.com/fasionchan/linux-network-programming/blob/master/c/ethernet/send_ether.c>`_ 。
+`c/ethernet/send_ether.c <https://github.com/fasionchan/linux-network-programming/blob/master/src/c/ethernet/send_ether.c>`_ 。
 
 总结
 ====

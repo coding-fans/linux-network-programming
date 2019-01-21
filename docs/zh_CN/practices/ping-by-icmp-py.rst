@@ -15,9 +15,9 @@
         本文使用Python语言开发一个ping命令，以演示如何通过套接字发送和接收ICMP协议报文。
     :keywords: icmp, ping, python, checksum, socket, sendto, recvfrom, 编程
 
-==============================
-ICMP协议编程实践：实现ping命令
-==============================
+==========================================
+ICMP协议编程实践：实现ping命令(Python语言)
+==========================================
 
 众所周知， `ping`_ 命令通过 `ICMP` 协议探测目标 `IP` 并计算 **往返时间** 。
 本文使用 `Python`_ 语言开发一个 `ping` 命令，
@@ -254,10 +254,17 @@ ICMP协议编程实践：实现ping命令
 下一步
 ======
 
+本节以 ``C`` 语言为例，演示了 `ICMP` 编程方法。
+如果你对其他语言感兴趣，请按需取用：
+
+- :doc:`./ping-by-icmp-c`
+
 .. include:: /_fragments/next-step-to-wechat-mp.rst
 
 参考文献
 ========
+
+#. `RFC 792 - Internet Control Message Protocol <https://tools.ietf.org/html/rfc792>`_
 
 .. include:: /_fragments/wechat-reward.rst
 

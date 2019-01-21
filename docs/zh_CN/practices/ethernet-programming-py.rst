@@ -265,7 +265,7 @@ mac_aton
 #. 发送数据帧( ``40`` 行)；
 
 整个程序代码有点长，就不在这里贴了，请在 ``GitHub`` 上查看：
-`python/ethernet/send_ether.py <https://github.com/fasionchan/linux-network-programming/blob/master/python/ethernet/send_ether.py>`_ 。
+`python/ethernet/send_ether.py <https://github.com/fasionchan/linux-network-programming/blob/master/src/python/ethernet/send_ether.py>`_ 。
 
 总结
 ====
