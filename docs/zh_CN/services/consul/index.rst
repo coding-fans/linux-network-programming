@@ -1,7 +1,7 @@
-.. 关于
+.. Consul
     FileName:   index.rst
     Author:     Fasion Chan
-    Created:    2018-01-27 20:08:14
+    Created:    2019-01-20 20:20:48
     @contact:   fasionchan@gmail.com
     @version:   $Id$
 
@@ -9,16 +9,15 @@
 
     Changelog:
 
-====
-关于
-====
+======
+Consul
+======
 
 .. toctree::
     :titlesonly:
 
-    交流 <contact>
-    推荐书单 <recommended-books>
-    内推职位 <recommendation/index>
+    快速开始 <quick-start/index>
 
 .. comments
     comment something out blow
+

@@ -17,6 +17,7 @@
     :titlesonly:
 
     HAProxy <haproxy>
+    Consul <consul/index>
     Nginx <nginx>
     Shadowsocks <shadowsocks>
     SSH端口转发 <ssh-port-forwarding>
