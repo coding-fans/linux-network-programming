@@ -20,9 +20,9 @@
 网络层
 ======
 
- :ref:`data-link-layer` 解决了多台共用信道计算机之间的通讯问题。
+:ref:`data-link-layer` 解决了多台共用信道计算机之间的通讯问题。
 
- 在这一层，每台计算机与 :ref:`ethernet-switcher` 或者 :ref:`ethernet-hub` 之类的设备连接，并用 :ref:`ethernet-protocol` 进行通信：
+在这一层，每台计算机与 :ref:`ethernet-switcher` 或者 :ref:`ethernet-hub` 之类的设备连接，并用 :ref:`ethernet-protocol` 进行通信：
 
 .. figure:: /_images/protocols/network-layer/a6c0bc01c575cc19d29aca64a681ac72.png
 

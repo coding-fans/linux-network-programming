@@ -158,7 +158,7 @@ rinetd
 .. note::
 
     注意到，程序启动后便退出了。
-    这是因为， `rinetd`_ 以后台进程(守护进程)的形式运行服务。
+    这是因为， `rinetd`_ 以后台进程( `守护进程`_ )的形式运行服务。
     执行 `ps aux | grep rinetd` 命令，可以找到该进程。
 
 .. warning::
@@ -187,6 +187,7 @@ rinetd
 .. include:: /_fragments/disqus.rst
 
 
+.. _守护进程: https://learn-linux.readthedocs.io/zh_CN/latest/system-programming/daemon/index.html
 .. _文件描述符: https://learn-linux.readthedocs.io/zh_CN/latest/system-programming/file-io/file-descriptor.html
 .. _rinetd: https://www.boutell.com/rinetd/
 

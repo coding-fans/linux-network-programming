@@ -18,6 +18,8 @@
 
     HAProxy <haproxy>
     Consul <consul/index>
+    etcd <etcd/index>
+    梅林(Merlin)路由固件 <merlin/index>
     Nginx <nginx>
     Shadowsocks <shadowsocks>
     SSH端口转发 <ssh-port-forwarding>

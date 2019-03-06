@@ -33,6 +33,13 @@
     *UNIX网络编程 第1卷：套接口API*
     👉 `豆瓣 <https://book.douban.com/subject/1500149/>`__ /
 
+.. figure:: /_images/about/recommended-books/135c03447fbe7397f1ccc57d57be9b88.jpg
+    :width: 160px
+    :target: https://book.douban.com/subject/6058986/
+
+    *TCP/IP高效编程*
+    👉 `豆瓣 <https://book.douban.com/subject/6058986/>`__ /
+
 下一步
 ======
 

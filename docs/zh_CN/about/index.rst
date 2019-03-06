@@ -17,8 +17,8 @@
     :titlesonly:
 
     交流 <contact>
-    推荐书单 <recommended-books>
-    内推职位 <recommendation/index>
+    推荐书单 </appendices/recommended-books>
+    内推职位 </appendices/recommendation/index>
 
 .. comments
     comment something out blow

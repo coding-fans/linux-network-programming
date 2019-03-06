@@ -24,6 +24,8 @@
     man <man>
     nc <nc>
     rinetd <rinetd>
+    route <route>
+    socat <socat>
     tcpdump <tcpdump>
 
 .. comments

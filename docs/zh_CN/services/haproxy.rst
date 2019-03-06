@@ -148,6 +148,30 @@ HAProxy
 
     *无须切换服务器*
 
+权重调整
+========
+
+.. code-block:: cfg
+
+    listen ss-proxy 0.0.0.0:443
+        mode tcp
+        maxconn 1024
+        balance roundrobin
+        server hk xxx.xxx.xxx.xxx:443 weight 256
+        server ca xxx.xxx.xxx.xxx:443 weight 1
+
+健康检查
+========
+
+.. code-block:: cfg
+
+    listen ss-proxy 0.0.0.0:443
+        mode tcp
+        maxconn 1024
+        balance roundrobin
+        server hk xxx.xxx.xxx.xxx:443 check inter 2s fastinter 1s
+        server ca xxx.xxx.xxx.xxx:443 check inter 2s fastinter 1s
+
 下一步
 ======
 
