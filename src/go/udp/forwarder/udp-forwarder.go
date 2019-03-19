@@ -98,9 +98,19 @@ func (session *UDPSession) ForwardForever() () {
         buffer := make([]byte, 65536)
         n, err := session.RemoteConnection.Read(buffer)
         if err != nil {
-            if time.Now().Sub(session.LastActiveTime) > session.Timeout {
-                break
+            switch err := err.(type) {
+            case net.Error:
+                if err.Timeout() {
+                    if time.Now().Sub(session.LastActiveTime) >= session.Timeout {
+                        break
+                    }
+
+                    continue
+                }
             }
+
+            fmt.Printf("session [%s] read error: %s\n", session.Key, err)
+            break
         }
 
         session.LastActiveTime = time.Now()
@@ -117,13 +127,14 @@ func (session *UDPSession) ForwardForever() () {
             session.SourceAddress,
         )
         if err != nil {
+            fmt.Printf("session [%s] write error: %s", session.Key, err)
             break
         }
     }
 
     fmt.Printf("session routine [%s] stop\n", session.Key)
 
-    session.Forwarder.TimeoutSessions <- session
+    session.Forwarder.FeedTimeoutSession(session)
 }
 
 func (session *UDPSession) FeedData(data []byte) () {
@@ -187,7 +198,7 @@ func (forwarder *UDPForwarder) ServeForever() {
                 }
             }
 
-            fmt.Println("error:", err)
+            fmt.Println("read error:", err)
             continue
         }
 
@@ -291,6 +302,7 @@ func main() {
 
     forwarder, err := CreateUDPForwarder(options)
     if err != nil {
+        fmt.Println("create forwarder error:", err)
         os.Exit(1)
     }
 

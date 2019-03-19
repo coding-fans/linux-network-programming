@@ -62,7 +62,7 @@
 **黄色** 部分是被墙挡住的各种网络服务。
 
 路由需要部署 `ss-redir` 模块，用于接收通过 `iptables`_ **重定向** ( `REDIRECT` )的 `TCP` 流量
-和 `iptables` 透明代理 ( `TPROXY` )的 `UDP` 流量，
+和 `iptables` 透明代理 ( `TPROXY`_ )的 `UDP` 流量，
 并通过 `ss-server` 转发出去。
 
 由于被 `GFW` 墙的 `IP` 数量不少，用 `ipset`_ 创建一个 `IP集合`_ 进行管理更灵活高效，如图中的 `ss-ips` 。
@@ -536,7 +536,12 @@ ss-redir服务化
 ========
 
 #. `AsusWRT/Merlin Wiki <https://github.com/RMerl/asuswrt-merlin/wiki>`_
+#. `ASUS 66u 搭建透明代理 <https://w2x.me/2018/09/20/ASUS-66u-%E6%90%AD%E5%BB%BA%E9%80%8F%E6%98%8E%E4%BB%A3%E7%90%86/>`_
 #. `from-ss-redir-to-linux-nat <https://vvl.me/2018/06/09/from-ss-redir-to-linux-nat/>`_
+#. `ss/ssr/v2ray/socks5 透明代理 <https://www.zfl9.com/ss-redir.html>`_
+#. `利用ipset封禁大量IP <https://fixatom.com/block-ip-with-ipset/>`_
+#. `那些从墙上学会的知识 <https://icymind.com/learn-from-gfw/>`_
+
 
 .. include:: /_fragments/wechat-reward.rst
 
@@ -550,6 +555,7 @@ ss-redir服务化
 .. _IP集合: http://ipset.netfilter.org/
 .. _Merlin: https://asuswrt.lostrealm.ca/
 .. _REDIRECT: http://man7.org/linux/man-pages/man8/iptables.8.html
+.. _TPROXY: https://www.kernel.org/doc/Documentation/networking/tproxy.txt
 
 .. _固件下载页面: https://asuswrt.lostrealm.ca/download
 

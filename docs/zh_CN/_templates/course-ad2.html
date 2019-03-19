@@ -1,0 +1,40 @@
+<div id="course-ad2">
+    <h3>大牛课程</h3>
+
+    {% for course in [
+        {
+            "url": "https://time.geekbang.org/column/intro/140?code=watzFY59C5wIYB3ECn%2FScBaIFq5k8pPz9UU8ADR%2Fd4s%3D&utm_term=SPoster",
+            "url": "https://time.geekbang.org/column/intro/140?code=watzFY59C5wIYB3ECn%2FScBaIFq5k8pPz9UU8ADR%2Fd4s%3D",
+            "path": "_static/linux-performance-course.jpg",
+        },
+        {
+            "url": "https://time.geekbang.org/column/intro/112?code=S1Gimo52SvlZRR-d1JmFhwo3qiM%2FeyKiszh4wwpkW70%3D&utm_term=SPoster",
+            "url": "https://time.geekbang.org/column/intro/112?code=S1Gimo52SvlZRR-d1JmFhwo3qiM%2FeyKiszh4wwpkW70%3D",
+            "path": "_static/golang-core-course.jpg",
+        },
+        {
+            "url": "https://time.geekbang.org/column/intro/154?code=VicNYaXq1%2Ff9xQ-rrWlMfr%2FPoyYAw4D8eN8mB5SZTjA%3D&utm_term=SPoster",
+            "url": "https://time.geekbang.org/column/intro/154?code=VicNYaXq1%2Ff9xQ-rrWlMfr%2FPoyYAw4D8eN8mB5SZTjA%3D",
+            "path": "_static/web-front-end-course.jpg",
+        },
+        {
+            "url": "https://time.geekbang.org/column/intro/48?code=vPMg2o7CvYAvCtdAV7DY5UvvS1DzcRNcImRZy3KzttE%3D&utm_term=SPoster",
+            "url": "https://time.geekbang.org/column/intro/48?code=vPMg2o7CvYAvCtdAV7DY5UvvS1DzcRNcImRZy3KzttE%3D",
+            "path": "_static/zedhz-course.jpg",
+        },
+    ] %}
+        <a href="{{ course.url }}">
+            <img src="{{  pathto(course.path, 1) }}" />
+        </a>
+    {% endfor %}
+
+</div>
+
+<style>
+#course-ad2 img:hover {
+    margin-left: 5px;
+}
+#course-ad2 a {
+    text-decoration: none;
+}
+</style>
