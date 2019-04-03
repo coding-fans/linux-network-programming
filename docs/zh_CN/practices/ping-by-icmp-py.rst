@@ -156,7 +156,7 @@ ICMP协议编程实践：实现ping命令(Python语言)
 首先，实现 *pack_icmp_echo_request* 函数，用于封装 `ICMP` **回显请求** 报文：
 
 .. literalinclude:: /_src/python/icmp/ping/ping.py
-    :name: python/icmp/ping/ping.py
+    :name: python/icmp/ping/ping.py/pack_icmp_echo_request
     :language: python
     :lines: 60-70
     :linenos:
@@ -172,7 +172,7 @@ ICMP协议编程实践：实现ping命令(Python语言)
 对应地，实现 *unpack_icmp_echo_reply* 用于解析 `ICMP` **回显答复** 报文：
 
 .. literalinclude:: /_src/python/icmp/ping/ping.py
-    :name: python/icmp/ping/ping.py
+    :name: python/icmp/ping/ping.py/unpack_icmp_echo_reply
     :language: python
     :lines: 72-84
     :linenos:
@@ -180,7 +180,7 @@ ICMP协议编程实践：实现ping命令(Python语言)
 接着，实现 *send_routine* 用于循环发送 `ICMP` **回显请求** 报文：
 
 .. literalinclude:: /_src/python/icmp/ping/ping.py
-    :name: python/icmp/ping/ping.py
+    :name: python/icmp/ping/ping.py/send_routine
     :language: python
     :lines: 86-105
     :linenos:
@@ -204,7 +204,7 @@ ICMP协议编程实践：实现ping命令(Python语言)
 同样，实现 *recv_routine* 函数用于循环接收 `ICMP` **回显答复** 报文：
 
 .. literalinclude:: /_src/python/icmp/ping/ping.py
-    :name: python/icmp/ping/ping.py
+    :name: python/icmp/ping/ping.py/recv_routine
     :language: python
     :lines: 107-127
     :linenos:
@@ -220,7 +220,7 @@ ICMP协议编程实践：实现ping命令(Python语言)
 可以选用 **线程** 方案：
 
 .. literalinclude:: /_src/python/icmp/ping/ping.py
-    :name: python/icmp/ping/ping.py
+    :name: python/icmp/ping/ping.py/threading
     :language: python
     :lines: 129-160
     :linenos:

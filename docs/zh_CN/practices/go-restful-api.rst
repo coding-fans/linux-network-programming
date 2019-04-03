@@ -1,7 +1,7 @@
-.. 用 Flask 框架写 RESTful API
-    FileName:   restful-api-by-flask.rst
+.. 用Go语言写RESTful API
+    FileName:   go-restful-api.rst
     Author:     Fasion Chan
-    Created:    2018-06-13 10:40:19
+    Created:    2019-03-12 14:35:45
     @contact:   fasionchan@gmail.com
     @version:   $Id$
 
@@ -10,16 +10,19 @@
     Changelog:
 
 .. meta::
-    :keywords: restful, flask, python
+    :description lang=zh:
+        本文先介绍一些RESTful理念，并通过一个KVS服务演示RESTfulAPI的行为。
+        最后以KVS服务实作为例，介绍如何使用go-restful框架编写RESTfulAPI。
+    :keywords: restful, go, go-restful, api, golang, Go语言
 
-===========================
-用 Flask 框架写 RESTful API
-===========================
+=====================
+用Go语言写RESTful API
+=====================
 
 本文先介绍一些 :ref:`restful-philosophy` ，
 并通过一个 :ref:`kvs-service` 演示 `RESTful API` 的行为。
 最后以 :ref:`kvs-implementation` 为例，
-介绍如何使用 `Flask` 框架编写 `RESTful API` 。
+介绍如何使用 `go-restful` 框架编写 `RESTful API` 。
 
 .. _restful-philosophy:
 
@@ -85,52 +88,41 @@ KVS 服务
 为了演示 `RESTful` 服务接口的特性，我们特地实现了一个简单的服务—— `KVS` 服务。
 
 该服务只提供一种资源，名为 ``kv`` 。
-根据资源名， ``kv`` 资源组的 `URI` 是 ``/kvs`` ， ``kv`` 资源的 `URI` 是 ``/kvs/<key>`` ， ``key`` 是资源的键。
+根据资源名， ``kv`` 资源组的 `URI` 是 ``/kvs`` ，
+``kv`` 资源的 `URI` 是 ``/kvs/<key>`` ， ``key`` 是资源的键。
 
-进入源码目录 `python/restful/flask/kvs <https://github.com/fasionchan/linux-network-programming/tree/master/src/python/restful/flask/kvs>`_ ，
-可以看到两个文件：
+进入源码目录 `go/restful/go-restful/kvs <https://github.com/fasionchan/linux-network-programming/tree/master/src/go/restful/go-restful/kvs>`_ ，
+可以看到源码文件 `kvs.go <https://github.com/fasionchan/linux-network-programming/blob/master/src/go/restful/go-restful/kvs/kvs.go>`_ ：
 
 .. code-block:: shell-session
 
-    $ cd python/restful/flask/kvs
+    $ cd go/restful/go-restful/kvs
     $ ls
-    kvs.py  requirements.txt
+    kvs.go
 
-其中， `kvs.py`_ 是源码文件，
-`requirements.txt`_ 是 `Python` 依赖。
-
-如果你的 `Python` 执行环境还未安装 `Flask` 框架，请使用 `pip` 命令安装：
+在 `Go` 开发环境下，可直接启动 `KVS` 服务了：
 
 .. code-block:: shell-session
 
-    $ pip install -r requirements.txt
+    $ go run kvs.go
 
-依赖安装完毕后，就可以启动 `KVS` 服务了：
-
-.. code-block:: shell-session
-
-    $ FLASK_APP=kvs.py flask run
-    * Serving Flask app "kvs.py"
-    * Environment: production
-      WARNING: Do not use the development server in a production environment.
-      Use a production WSGI server instead.
-    * Debug mode: off
-    * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
-
-服务默认监听本地 `5000` 端口： `<http://127.0.0.1:5000/>`_ 。
-
-可以给 `flask` 指定监听地址和端口：
-
-.. code-block:: shell-session
-
-    $ FLASK_APP=kvs.py flask run --host 0.0.0.0 --port 80
+服务默认监听本地 `8080` 端口： `<http://127.0.0.1:8080/>`_ 。
 
 服务启动后，资源池是空的，不信发起搜索请求看看：
 
 .. code-block:: shell-session
 
-    $ curl http://127.0.0.1:5000/kvs
-    {"data":[],"meta":{"count":0,"skip":0,"total":0},"result":true}
+    $ curl http://127.0.0.1:8080/kvs
+    {
+     "result": true,
+     "data": [],
+     "meta": {
+      "total": 0,
+      "skip": 0,
+      "count": 0
+     },
+     "message": ""
+    }
 
 注意到，返回的数据中， `data` 字段是一个空的列表。
 换句话讲，资源池中没有任何可用的键。
@@ -140,8 +132,13 @@ KVS 服务
 
 .. code-block:: shell-session
 
-    $ curl http://127.0.0.1:5000/kvs/something
-    {"message":"resource not exists","result":false}
+    $ curl http://127.0.0.1:8080/kvs/something
+    {
+     "result": false,
+     "data": null,
+     "meta": null,
+     "message": "resource not exists"
+    }
 
 好吧，那我们创建一个资源呗：
 
@@ -150,8 +147,17 @@ KVS 服务
     $ curl -X POST \
         -H 'Content-Type: application/json' \
         -d '{"key": "guangzhou", "name": "广州", "population": 14498400}' \
-        http://127.0.0.1:5000/kvs
-    {"data":{"key":"guangzhou","name":"广州","population":14498400},"result":true}
+        http://127.0.0.1:8080/kvs
+    {
+     "result": true,
+     "data": {
+      "key": "guangzhou",
+      "name": "广州",
+      "population": 14498400
+     },
+     "meta": null,
+     "message": ""
+    }
 
 我们新增了一条广州的人口数据，数据键为 ``guangzhou`` 。
 注意到，我们使用 ``POST`` 方法，并通过 ``Content-Type`` 头部指定数据类型为 ``json`` 。
@@ -163,8 +169,17 @@ KVS 服务
     $ curl -X POST \
         -H 'Content-Type: application/json' \
         -d '{"key": "hangzhou", "name": "杭州", "population": 946800}' \
-        http://127.0.0.1:5000/kvs
-    {"data":{"key":"hangzhou","name":"杭州","population":946800},"result":true}
+        http://127.0.0.1:8080/kvs
+    {
+     "result": true,
+     "data": {
+      "key": "hangzhou",
+      "name": "杭州",
+      "population": 946800
+     },
+     "meta": null,
+     "message": ""
+    }
 
 艾玛呀，人口少了个零咋整？——更新呗：
 
@@ -173,8 +188,17 @@ KVS 服务
     $ curl -X PUT \
         -H 'Content-Type: application/json' \
         -d '{"population": 9468000}' \
-        http://127.0.0.1:5000/kvs/hangzhou
-    {"data":{"key":"hangzhou","name":"杭州","population":9468000},"result":true}
+        http://127.0.0.1:8080/kvs/hangzhou
+    {
+     "result": true,
+     "data": {
+      "key": "hangzhou",
+      "name": "杭州",
+      "population": 9468000
+     },
+     "meta": null,
+     "message": ""
+    }
 
 注意到，这里我们采用 ``PUT`` 方法，数据只包括需要修正的人口字段( ``population`` )。
 
@@ -182,15 +206,44 @@ KVS 服务
 
 .. code-block:: shell-session
 
-    $ curl http://127.0.0.1:5000/kvs
-    {"data":[{"key":"guangzhou","name":"广州","population":14498400},{"key":"hangzhou","name":"杭州","population":9468000}],"meta":{"count":2,"skip":0,"total":2},"result":true}
+    $ curl http://127.0.0.1:8080/kvs
+    {
+     "result": true,
+     "data": [
+      {
+       "key": "guangzhou",
+       "name": "广州",
+       "population": 14498400
+      },
+      {
+       "key": "hangzhou",
+       "name": "杭州",
+       "population": 9468000
+      }
+     ],
+     "meta": {
+      "total": 2,
+      "skip": 0,
+      "count": 2
+     },
+     "message": ""
+    }
 
 根据数据键，我们可以查询出对应的数据记录：
 
 .. code-block:: shell-session
 
-    $ curl http://localhost:5000/kvs/guangzhou
-    {"data":{"key":"guangzhou","name":"广州","population":14498400},"result":true}
+    $ curl http://localhost:8080/kvs/guangzhou
+    {
+     "result": true,
+     "data": {
+      "key": "guangzhou",
+      "name": "广州",
+      "population": 14498400
+     },
+     "meta": null,
+     "message": ""
+    }
 
 数据记录不断增长，当存储资源不足时，服务将返回一个错误：
 
@@ -199,8 +252,13 @@ KVS 服务
     $ curl -X POST \
         -H 'Content-Type: application/json' \
         -d '{"key": "suzhou", "name": "苏州", "population": 10684000}' \
-        http://127.0.0.1:5000/kvs
-    {"message":"out of resources","result":false}
+        http://127.0.0.1:8080/kvs
+    {
+     "result": false,
+     "data": null,
+     "meta": null,
+     "message": "out of resources"
+    }
 
 .. _kvs-implementation:
 
@@ -208,18 +266,43 @@ KVS 服务实作
 ============
 
 `KVS` 是一个非常简单的服务，对于有一些编程基础的童鞋，理解起来应该毫无难度。
-完整源码在这查看： `kvs.py`_ 。
+完整源码在这查看： `kvs.go`_ 。
+
+先定义数据结构体，通过标签定义用于 *json* 序列化的字段名：
+
+.. literalinclude:: /_src/go/restful/go-restful/kvs/kvs.go
+    :name: go/restful/go-restful/kvs/kvs.go/struct
+    :language: go
+    :lines: 28-45
+    :linenos:
+
+*DataItem* 是存储 **城市信息** 的结构体；
+*ResultMeta* 是存储 **结果元数据** 的结构体；
+而 *Result* 则是存储 **请求结果** 的结构体。
+
+在 `go-restful`_ 框架中，服务定义由 *restful.WebService* 结构维护，初始化示例如下：
+
+.. literalinclude:: /_src/go/restful/go-restful/kvs/kvs.go
+    :name: go/restful/go-restful/kvs/kvs.go/service
+    :language: go
+    :lines: 47-61
+    :linenos:
+
+如上述代码，构建 *restful.WebService* 结构，需指定 **路径** ( `path` )以及 **路由规则** 。
+路由规则包括 *3* 个组成部分， **路径** ( `path` )、 **方法** ( `method` )以及 **处理函数** 。
+
+处理函数有两个参数： **请求对象** ( *restful.Request* )以及 **响应对象** ( *restful.Response* )。
+其中，请求对象用于获取请求信息；响应对象用于返回数据。
 
 增
 --
 
-创建资源需在资源组 `URI` ( ``/kvs`` )之上实现 `POST` 方法：
+创建资源需在资源组 `URI` ( ``/kvs`` )之上实现 `POST` 方法处理函数：
 
-.. literalinclude:: /_src/python/restful/flask/kvs/kvs.py
-    :caption:
-    :name: python/restful/flask/kvs/kvs/create
-    :language: python
-    :lines: 56-100
+.. literalinclude:: /_src/go/restful/go-restful/kvs/kvs.go
+    :name: go/restful/go-restful/kvs/kvs.go/create
+    :language: go
+    :lines: 62-109
     :linenos:
 
 创建资源的处理逻辑如下：
@@ -230,31 +313,19 @@ KVS 服务实作
 #. 检查资源，在资源已存在时返回错误；
 #. 创建资源并加入资源组；
 
-注意到，我们通过在请求数据中包含数据键( ``key`` 字段 )来保证该操作的幂等性。
-
-**获取请求数据** 的逻辑在其他接口也会用到，因此需要对其进行封装，以便代码复用。
-为此，我们实现了一个名为 ``get_request_data`` 的函数：
-
-.. literalinclude:: /_src/python/restful/flask/kvs/kvs.py
-    :caption:
-    :name: python/restful/flask/kvs/kvs/get_request_data
-    :language: python
-    :lines: 34-53
-    :linenos:
-
-该函数先检查 `Content-Type` **头部** ，然后根据头部指定数据类型，对 **请求体** ( `Request Body` )进行 **反序列化** 。
+注意到，我们通过在请求数据中包含数据键( ``key`` 字段 )来保证该操作的 **幂等性** 。
 
 删
 --
 
-删除资源需要为资源 `URI` 实现 `DELETE` 方法。
+删除资源需要为资源 `URI` 实现 `DELETE` 方法处理函数。
 资源 `URI` 形如 ``/kvs/<key>`` ，其中 ``kvs`` 是资源名， ``<key>`` 是用于唯一标识一个资源的键(或者 `ID` )。
 
-.. literalinclude:: /_src/python/restful/flask/kvs/kvs.py
+.. literalinclude:: /_src/go/restful/go-restful/kvs/kvs.go
     :caption:
-    :name: python/restful/flask/kvs/kvs/delete
-    :language: python
-    :lines: 103-122
+    :name: go/restful/go-restful/kvs/kvs.go/delete
+    :language: go
+    :lines: 111-130
     :linenos:
 
 删除资源前，先检查资源是否存在。
@@ -263,13 +334,13 @@ KVS 服务实作
 改
 --
 
-更新资源需要为资源 `URI` 实现 `PUT` 方法：
+更新资源需要为资源 `URI` 实现 `PUT` 方法处理函数：
 
-.. literalinclude:: /_src/python/restful/flask/kvs/kvs.py
+.. literalinclude:: /_src/go/restful/go-restful/kvs/kvs.go
     :caption:
-    :name: python/restful/flask/kvs/kvs/update
-    :language: python
-    :lines: 125-157
+    :name: go/restful/go-restful/kvs/kvs.go/update
+    :language: go
+    :lines: 132-159
     :linenos:
 
 更新方式由两种， **部分更新** 以及 **整体替换** ，该例子实现的是前者。
@@ -277,13 +348,13 @@ KVS 服务实作
 查
 --
 
-查询操作需要为资源 `URI` 实现 `GET` 方法：
+查询操作需要为资源 `URI` 实现 `GET` 方法处理函数：
 
-.. literalinclude:: /_src/python/restful/flask/kvs/kvs.py
+.. literalinclude:: /_src/go/restful/go-restful/kvs/kvs.go
     :caption:
-    :name: python/restful/flask/kvs/kvs/retrieve
-    :language: python
-    :lines: 160-179
+    :name: go/restful/go-restful/kvs/kvs.go/retrieve
+    :language: go
+    :lines: 161-177
     :linenos:
 
 列
@@ -291,11 +362,11 @@ KVS 服务实作
 
 列举给定资源组内的资源，需要为资源组 `URI` 实现 `GET` 方法：
 
-.. literalinclude:: /_src/python/restful/flask/kvs/kvs.py
+.. literalinclude:: /_src/go/restful/go-restful/kvs/kvs.go
     :caption:
-    :name: python/restful/flask/kvs/kvs/search
-    :language: python
-    :lines: 182-
+    :name: go/restful/go-restful/kvs/kvs.go/search
+    :language: go
+    :lines: 179-232
     :linenos:
 
 可以通过 `URI` 参数指定列举条件，则只返回符合条件的资源。
@@ -318,10 +389,8 @@ KVS 服务实作
 
 .. include:: /_fragments/disqus.rst
 
-.. _kvs: https://github.com/fasionchan/linux-network-programming/tree/master/src/python/restful/flask/kvs
-.. _kvs.py: https://github.com/fasionchan/linux-network-programming/blob/master/src/python/restful/flask/kvs/kvs.py
-.. _requirements.txt: https://github.com/fasionchan/linux-network-programming/blob/master/src/python/restful/flask/kvs/requirements.txt
+.. _go-restful: https://github.com/emicklei/go-restful
+.. _kvs.go: https://github.com/fasionchan/linux-network-programming/blob/master/src/go/restful/go-restful/kvs/kvs.go
 
 .. comments
     comment something out below
-

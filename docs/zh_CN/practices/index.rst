@@ -21,7 +21,8 @@
     ICMP编程实践(C语言) <ping-by-icmp-c>
     ICMP编程实践(Python语言) <ping-by-icmp-py>
     使用SMTP发送邮件(Python语言) <send-email-by-smtp-py>
-    用Flask框架写RESTful API<restful-api-by-flask>
+    用Flask框架写RESTful API <restful-api-by-flask>
+    用Go语言写RESTful API <go-restful-api>
 
 .. comments
     comment something out below

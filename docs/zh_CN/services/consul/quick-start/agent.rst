@@ -31,7 +31,7 @@
 **客户端** 进程非常轻量级，只负责 **注册服务** ，运行 **健康检查** 以及 **转发查询** 。
 集群内每个节点均需要运行 **客户端** 模式 **代理** 。
 
-更多数据中心部署细节，请查看 `这个文档 <https://learn.hashicorp.com/consul/advanced/day-1-operations/deployment-guide>`_ 。
+更多数据中心部署细节，请查看文档 `deployment-guide <https://learn.hashicorp.com/consul/advanced/day-1-operations/deployment-guide>`_ 。
 
 启动代理
 ========
@@ -131,7 +131,7 @@
 `Consul` 将自动重连故障节点，以应对网络波动，但不会重连已退出的节点。
 
 如果 **代理** 为 **服务器** 模式，优雅退出则更为重要——避免影响 **共识协议** 而导致服务中断。
-更多关于安全添加和删除服务节点，请查考 `这个文档 <https://learn.hashicorp.com/consul/day-2-operations/advanced-operations/servers>`_ 。
+更多关于安全添加和删除服务节点，请查考文档 `advanced-operations/servers <https://learn.hashicorp.com/consul/day-2-operations/advanced-operations/servers>`_ 。
 
 下一步
 ======

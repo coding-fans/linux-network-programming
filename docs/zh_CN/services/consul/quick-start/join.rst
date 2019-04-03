@@ -182,7 +182,7 @@ Consul集群
 
 通过 `Ctrl-C` 或者强杀 **代理** 进程即可使其退出集群。
 将节点转至 **离开状态** ( `left state` )则 **更优雅** ，避免其他节点检测到异常。
-两种方式的区别在 `这里 <https://learn.hashicorp.com/consul/getting-started/agent.html#stopping-the-agent>`_ 有详细讨论。
+两种方式的区别 `官网 <https://learn.hashicorp.com/consul/getting-started/agent.html#stopping-the-agent>`_ 上有详细讨论。
 
 下一步
 ======

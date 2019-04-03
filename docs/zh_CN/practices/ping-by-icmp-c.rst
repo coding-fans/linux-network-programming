@@ -158,7 +158,7 @@ ICMP协议编程实践：实现ping命令(C语言)
 首先，实现 *send_echo_request* 函数，用于发送 `ICMP` **回显请求** 报文：
 
 .. literalinclude:: /_src/c/icmp/ping/ping.c
-    :name: c/icmp/ping/ping.c
+    :name: c/icmp/ping/ping.c/send_echo_request
     :language: c
     :lines: 78-109
     :linenos:
@@ -174,7 +174,7 @@ ICMP协议编程实践：实现ping命令(C语言)
 对应地，实现 *recv_echo_reply* 用于接收 `ICMP` **回显答复** 报文：
 
 .. literalinclude:: /_src/c/icmp/ping/ping.c
-    :name: c/icmp/ping/ping.c
+    :name: c/icmp/ping/ping.c/recv_echo_reply
     :language: c
     :lines: 111-151
     :linenos:
@@ -187,10 +187,10 @@ ICMP协议编程实践：实现ping命令(C语言)
 第 *29-31* 检查 **标识符** 是否匹配；
 第 *32-38* 行计算 **往返时间** 并打印提示信息。
 
-最后，实现 `ping` 行数，循环发送并接收报文：
+最后，实现 `ping` 函数，循环发送并接收报文：
 
 .. literalinclude:: /_src/c/icmp/ping/ping.c
-    :name: c/icmp/ping/ping.c
+    :name: c/icmp/ping/ping.c/ping
     :language: c
     :lines: 153-208
     :linenos:
