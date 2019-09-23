@@ -21,6 +21,7 @@
     以太网交换 <ethernet-switching>
     网络层 <network-layer>
     IP协议 <ip>
+    QUIC协议 <quic>
 
 .. comments
     comment something out below

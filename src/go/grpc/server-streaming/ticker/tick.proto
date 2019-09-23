@@ -1,0 +1,21 @@
+/*
+ * Author: fasion
+ * Created time: 2019-05-10 08:37:45
+ * Last Modified by: fasion
+ * Last Modified time: 2019-05-10 08:51:05
+ */
+
+syntax = "proto3";
+
+package main;
+
+import "google/protobuf/timestamp.proto";
+import "google/protobuf/empty.proto";
+
+service TickService {
+    rpc Listen(google.protobuf.Empty) returns (stream Tick) {};
+}
+
+message Tick {
+    google.protobuf.Timestamp timestamp = 1;
+}

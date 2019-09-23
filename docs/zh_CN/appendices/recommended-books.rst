@@ -16,24 +16,31 @@
 网络协议
 ========
 
-.. figure:: /_images/about/recommended-books/03a9b09d4c3b8ae1e7c412df427b5f81.jpg
+.. figure:: /_images/appendices/recommended-books/03a9b09d4c3b8ae1e7c412df427b5f81.jpg
     :width: 160px
     :target: https://book.douban.com/subject/1088054/
 
     *TCP/IP详解 卷1：协议*
     👉 `豆瓣 <https://book.douban.com/subject/1088054/>`__ /
 
+.. figure:: /_images/appendices/recommended-books/9675f146c91a9114a1056028bf2e8d7f.jpg
+    :width: 160px
+    :target: https://book.douban.com/subject/10746113/
+
+    *HTTP权威指南*
+    👉 `豆瓣 <https://book.douban.com/subject/10746113/>`__ /
+
 网络编程
 ========
 
-.. figure:: /_images/about/recommended-books/288dbc60e22f8345c37ccae07b4d22f1.jpg
+.. figure:: /_images/appendices/recommended-books/c0db2cecebc3b7a2498a68a400e4f708.jpg
     :width: 160px
     :target: https://book.douban.com/subject/1500149/
 
     *UNIX网络编程 第1卷：套接口API*
     👉 `豆瓣 <https://book.douban.com/subject/1500149/>`__ /
 
-.. figure:: /_images/about/recommended-books/135c03447fbe7397f1ccc57d57be9b88.jpg
+.. figure:: /_images/appendices/recommended-books/135c03447fbe7397f1ccc57d57be9b88.jpg
     :width: 160px
     :target: https://book.douban.com/subject/6058986/
 
@@ -55,4 +62,3 @@
     .. meta::
         :description lang=zh:
         :keywords:
-
