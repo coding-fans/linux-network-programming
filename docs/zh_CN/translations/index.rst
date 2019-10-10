@@ -15,6 +15,7 @@
 .. toctree::
     :titlesonly:
 
+    CAP定理与分布式数据管理系统 <cap-theorem-and-distributed-database-management-systems.rst>
     深入理解Linux TCP backlog <linux-tcp-backlog>
     Raft算法论文 <raft-paper>
     socat - Linux/Unix TCP 端口转发 <socat-linux-unix-tcp-port-forwarding>
