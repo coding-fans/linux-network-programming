@@ -107,7 +107,7 @@
 设置完成之后，网卡 ``enp0s8`` 带上 ``PROMISC`` 标志，代表混杂模式已经开启。
 
 混杂模式开启后，网卡接收到的数据，不管目的地址是否是自己，都会提交驱动程序处理。
-这在使用 ``tcpdump`` 等工具抓包分析网络数据时特别有用。
+这在使用 :doc:`/toolkit/tcpdump` 等工具抓包分析网络数据时特别有用。
 
 .. _mac-address:
 
@@ -208,7 +208,7 @@ MAC地址
     "cicada", "08:00:27:0e:18:e5"
 
 接下来，我们通过以太网数据帧从 ``ant`` 往 ``bee`` 发送一个数据。
-为了观察数据，我们先在 ``bee`` 以及 ``cicada`` 上运行 ``tcpdump`` 命令，嗅探网络数据包：
+为了观察数据，我们先在 ``bee`` 以及 ``cicada`` 上运行 :doc:`/toolkit/tcpdump` 命令，嗅探网络数据包：
 
 .. code-block:: console
 
@@ -227,6 +227,13 @@ MAC地址
 ``-t`` 选项是目的 ``MAC`` 地址，即 ``bee`` 服务器 ``enp0s8`` 网卡的地址；
 ``-T`` 选项指定类型，这里我们随便取了一个 ``0x1024`` ；
 ``-d`` 选项指定数据，这里是最经典的 ``Hello, world!``
+
+.. note::
+
+    `send_ether`_ 是一个为演示以太网编程而开发的示例程序，提供多种语言版本：
+
+    - :doc:`/practices/ethernet-programming-c`
+    - :doc:`/practices/ethernet-programming-py`
 
 在 ``bee`` 上，我们看到了 ``ant`` 发送过来的数据包：
 
@@ -303,6 +310,7 @@ MAC地址
 .. include:: /_fragments/disqus.rst
 
 .. _ASCII: http://man7.org/linux/man-pages/man7/ascii.7.html
+.. _send_ether: https://github.com/fasionchan/linux-network-programming/blob/master/src/c/ethernet/send_ether.c
 
 .. comments
     comment something out blow

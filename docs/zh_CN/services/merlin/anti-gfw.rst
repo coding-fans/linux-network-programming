@@ -1,13 +1,8 @@
-.. 梅林科学上网秘籍
-    FileName:   anti-gfw.rst
-    Author:     Fasion Chan
-    Created:    2019-02-28 19:20:23
-    @contact:   fasionchan@gmail.com
-    @version:   $Id$
-
-    Description:
-
-    Changelog:
+..
+    Author: fasion
+    Created time: 2019-02-28 19:20:23
+    Last Modified by: fasion
+    Last Modified time: 2019-10-10 10:07:39
 
 .. meta::
     :description lang=zh:
@@ -30,6 +25,10 @@
 
     **梅林** 路由固件很流行，是 **华硕** ( `ASUS`_ ) 官方固件衍生版本，属于半官方固件。
     与其他路由固件相比， **梅林** 运行更稳定，技术资料也更丰富。
+
+    `Just My Socks`_ 是一个稳定的 `shadowsocks` 云服务， `IP` 被墙时能 **自动换IP** 。
+    最低套餐每月 *2.88* 美金( *20* 人民币左右)，比买 `Linode`_ 服务器来部署还便宜！
+    人生苦短，请用 `Just My Socks`_ ！
 
 硬件选型
 ========
@@ -546,6 +545,9 @@ ss-redir服务化
 .. include:: /_fragments/wechat-reward.rst
 
 .. include:: /_fragments/disqus.rst
+
+.. _Just My Socks: https://justmysocks.net/members/aff.php?aff=6159
+.. _Linode: https://www.linode.com/?r=8e45c4effcbbafe17fd593b5064d219bfab37e7d
 
 .. _ASUS: https://www.asus.com/
 .. _Entware: https://github.com/Entware/Entware

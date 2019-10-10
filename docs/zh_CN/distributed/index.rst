@@ -15,6 +15,7 @@
 .. toctree::
     :titlesonly:
 
+    CAP定理 <cap-theorem>
     VRRP虚IP漂移 <vrrp-vip-floating>
 
 .. comments

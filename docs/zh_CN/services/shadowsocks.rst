@@ -1,13 +1,8 @@
-.. Shadowsocks
-    FileName:   shadowsocks.rst
-    Author:     Fasion Chan
-    Created:    2018-02-24 20:29:39
-    @contact:   fasionchan@gmail.com
-    @version:   $Id$
-
-    Description:
-
-    Changelog:
+..
+    Author: fasion
+    Created time: 2018-02-24 20:29:39
+    Last Modified by: fasion
+    Last Modified time: 2019-10-10 10:05:51
 
 .. meta::
     :description lang=zh:
@@ -20,6 +15,22 @@
 ===========
 Shadowsocks
 ===========
+
+本文介绍 `shadowsocks`_ 科学上网方案的 :ref:`shadowsocks-principle` 以及 :ref:`shadowsocks-deployment` 。
+
+.. note::
+
+    自己维护 `shadowsocks`_ 服务是一件 **烦心事** ，你需要花精力去处理各种异常。
+    当 `IP` 被封时，要么掏钱换个 `IP` ，要么买一个新服务器重新部署。
+
+    人生苦短，请用 `Just My Socks`_ ！
+
+    这是一个 `shadowsocks` 云服务，最低套餐每月 *2.88* 美金( *20* 人民币左右)，
+    即可获得稳定的服务，比自己买 `Linode`_ 服务器来部署还便宜呢！
+    `Just My Socks`_ 最大的优势是， `IP` 被封时 **自动换IP** ，再也不用自己瞎操心了！
+
+背景
+====
 
 从前的从前，网络是自由的，访问 `Google <https://www.google.com/>`_ 畅通无阻：
 
@@ -53,12 +64,14 @@ Shadowsocks
     - 请不要私自架设翻墙服务供他人使用！
     - 对于读者任何违法行为，本文不负任何法律责任！
 
-原理
-====
+.. _shadowsocks-principle:
+
+技术原理
+========
 
 .. figure:: /_images/services/shadowsocks/52b3f5f2d83dbcad3388f4e75a0f74a6.png
 
-    *shadowsocks 原理*
+    *shadowsocks 技术原理*
 
 如上图， `shadowsocks <https://shadowsocks.org/en/index.html>`_ 的原理很简单，只需要在 `GFW` 两端各自部署一个代理节点。
 境外的节点为 ``SS Server`` ，下文称为 :ref:`ss-server` ；
@@ -85,10 +98,23 @@ Shadowsocks
 
 虽然饶了一大圈，但总算达到目的了。
 
+.. _shadowsocks-deployment:
+
 部署方式
 ========
 
 `shadowsocks` 有多种部署方式：:ref:`shadowsocks-python` 以及 :ref:`shadowsocks-apt` 等，择一即可。
+
+.. note::
+
+    自己维护 `shadowsocks`_ 服务是一件 **烦心事** ，你需要花精力去处理各种异常。
+    当 `IP` 被封时，要么掏钱换个 `IP` ，要么买一个新服务器重新部署。
+
+    人生苦短，请用 `Just My Socks`_ ！
+
+    这是一个 `shadowsocks` 云服务，最低套餐每月 *2.88* 美金( *20* 人民币左右)，
+    即可获得稳定的服务，比自己买 `Linode`_ 服务器来部署还便宜呢！
+    `Just My Socks`_ 最大的优势是， `IP` 被封时 **自动换IP** ，再也不用自己瞎操心了！
 
 .. _shadowsocks-python:
 
@@ -115,8 +141,8 @@ Apt
 ======
 
 部署服务端，首先需要有一台境外服务器。
-国外有很多 `VPS` 服务商， `Linode <https://www.linode.com/?r=8e45c4effcbbafe17fd593b5064d219bfab37e7d>`_ 口碑就不错。
-有需要的童鞋可以考虑在 `Linode <https://www.linode.com/?r=8e45c4effcbbafe17fd593b5064d219bfab37e7d>`_ 上购买一个，最低配置一个月 10 美元，也不贵。
+国外有很多 `VPS` 服务商， `Linode`_ 口碑就不错。
+有需要的童鞋可以考虑在 `Linode`_ 上购买一个，最低配置一个月 5 美元，也不贵。
 
 注册时，麻烦填上笔者的推荐码 ``8e45c4effcbbafe17fd593b5064d219bfab37e7d`` 。
 
@@ -400,6 +426,9 @@ Hi, Google!
 .. include:: /_fragments/wechat-reward.rst
 
 .. include:: /_fragments/disqus.rst
+
+.. _Just My Socks: https://justmysocks.net/members/aff.php?aff=6159
+.. _Linode: https://www.linode.com/?r=8e45c4effcbbafe17fd593b5064d219bfab37e7d
 
 .. comments
     comment something out blow
