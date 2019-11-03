@@ -24,7 +24,7 @@ now = datetime.datetime.now()
 project = u'Linux网络编程'
 copyright = u'%d, <a href="https://fasionchan.com">fasionchan</a>' % (now.year,)
 author = u'fasionchan'
-site_domain = os.environ.get('SITE_DOMAIN', 'linux-network-programming.readthedocs.io')
+site_domain = os.environ.get('SITE_DOMAIN', 'network.fasionchan.com')
 
 # The short X.Y version
 version = u'1.0'
