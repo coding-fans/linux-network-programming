@@ -95,6 +95,7 @@ html_theme_options = {
     'logo': 'logo.png',
     #'logo_name': True,
     'description': u'Linux网络编程入门教程，面向初学者，例子丰富，讲解详细。',
+    'canonical_url': ('https://' + site_domain + '/zh_CN/latest/'),
 
     'font_family': ','.join(map(repr, [
         'Arial',
