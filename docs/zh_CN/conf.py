@@ -69,7 +69,7 @@ language = u'zh_CN'
 # List of patterns, relative to source directory, that match files and
 # directories to ignore when looking for source files.
 # This pattern also affects html_static_path and html_extra_path .
-exclude_patterns = [u'_build', 'Thumbs.db', '.DS_Store', '_fragments', 'opt']
+exclude_patterns = [u'_build', 'Thumbs.db', '.DS_Store', '_fragments', 'opt', '.misc']
 
 # The name of the Pygments (syntax highlighting) style to use.
 pygments_style = 'sphinx'
@@ -79,7 +79,7 @@ todo_include_todos = False
 
 
 # -- Options for HTML output ----------------------------------------------
-
+html_title = project
 html_favicon = '_static/logo.png'
 
 # The theme to use for HTML and HTML Help pages.  See the documentation for

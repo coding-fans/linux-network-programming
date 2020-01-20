@@ -17,6 +17,7 @@
     :titlesonly:
 
     推荐书单 </appendices/recommended-books>
+    推荐博客 <blogs>
     内推职位 </appendices/recommendation/index>
     内推职位列表 </appendices/recommendation/list>
 

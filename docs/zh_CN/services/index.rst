@@ -19,12 +19,12 @@
     HAProxy <haproxy>
     Consul <consul/index>
     etcd <etcd/index>
-    梅林(Merlin)路由固件 <merlin/index>
+    gRPC <grpc/index>
     Nginx <nginx>
-    Shadowsocks <shadowsocks>
     SSH端口转发 <ssh-port-forwarding>
     Tomcat <tomcat>
 
 .. comments
     comment something out blow
-
+    Shadowsocks <shadowsocks>
+    梅林(Merlin)路由固件 <merlin/index>
