@@ -2,7 +2,7 @@
     Author: fasion
     Created time: 2019-09-23 09:51:51
     Last Modified by: fasion
-    Last Modified time: 2019-09-23 15:49:24
+    Last Modified time: 2020-02-08 15:48:39
 
 .. meta::
     :keywords: quic, tcp, google, quick udp internet connections
@@ -56,7 +56,7 @@ QUIC
 如果客户端在发送 `SYN` 包的同时将 `ClientHello` 一起发给服务端；
 服务端响应 `SYN/ACK` 包时也带上相关 `TLS` 握手包，那么将可以节省一起往返时间！
 
-这便是 `QUIC` 降低延迟的思路，但在 `SYN` 集成其他协议协议控制已然不可能。
+这便是 `QUIC` 降低延迟的思路，但在 `SYN` 集成其他协议控制信息已然不可能。
 因此， `QUIC` 采用基于 `UDP` 协议之上，在应用程序内实现传输控制协议的方案。
 
 .. figure:: /_images/protocols/quic/a1d7e443d6b493c707e5261876d31f2d.png
